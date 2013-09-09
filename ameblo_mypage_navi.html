@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"
+    \"http://www.w3.org/TR/html4/loose.dtd\">
+<html>
+    <head>
+        <title>Test</title>
+<head>
+</head>
+<style type="text/css">
+#ameblo_mypage_navi{     /* ナビ全体           */
+position:fixed;          /* 絶対配置(固定)     */
+left:20px;               /* 左からの位置       */
+top:100px;               /* 上からの位置       */
+width:150px;             /* 幅                 */
+border:2px solid #999999;/* 枠                 */
+font-size:12px;          /* 文字の大きさ       */
+display:block;
+padding:0px;             /* 内側余白           */
+margin:0px;              /* 外側余白           */
+}
+#ameblo_mypage_navi li{  /* リスト部分         */
+list-style:none;         /* リストなし         */
+display:block;
+border-bottom:1px dotted #777777;/* 枠         */
+padding:1px 0px;         /* 内側余白           */
+margin:0px;              /* 外側余白           */
+}
+#ameblo_mypage_navi li a{/* リンク部分         */
+text-decoration:none;    /* アンダーラインなし */
+display:block;
+color:#888888;           /* 文字の色           */
+}
+#ameblo_mypage_navi ul{  /* リスト部分         */
+padding:10px;            /* 内側余白           */
+margin:0px;              /* 外側余白           */
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+// ameblo_mypage_navi.js
+function ameblo_mypage_navi(){
+// Navi URL
+var ameblo_navi_option=({
+ "option_url":[{                                                              // ★ URL JSON
+   "controls"    :"http://blog.ameba.jp/ucs/blog/bloginfoinput.do",           // 基本設定
+   "blog_write"  :"http://blog.ameba.jp/ucs/entry/srventryinsertinput.do",    // ブログを書く
+   "blog_change" :"http://blog.ameba.jp/ucs/entry/srventrylist.do",           // 記事の変更・削除
+   "image_upload":"http://blog.ameba.jp/ucs/upload/srvimagelist.do",          // 画像のアップロード
+   "comment"     :"http://blog.ameba.jp/ucs/comment/commentlist.do",          // コメントの管理
+   "reader"      :"http://blog.ameba.jp/ucs/reader/readerlist.do",            // 読者の管理
+   "analysis"    :"http://blog.ameba.jp/ucs/analysis/analysis.do",            // アクセス解析
+   "ranking"     :"http://ranking.ameba.jp/ucs/#",                            // ランキング
+   "css"         :"http://blog.ameba.jp/ucs/editcss/srvcssupdateinput.do",    // ＣＳＳ編集
+   "sidebar"     :"http://blog.ameba.jp/ucs/sidebar/srvsidebarupdateinput.do",// サイドバーの配置
+   "freeplugin"  :"http://blog.ameba.jp/ucs/plugin/freeplugininput.do",       // フリープラグイン
+   "freespace"   :"http://blog.ameba.jp/ucs/profile/srvprofileupdateinput.do",// フリースペース
+   "messagebord" :"http://blog.ameba.jp/ucs/msgboard/srvmsgboardinput.do",    // メッセージボード
+   "ameber"      :"http://ucsamember.ameba.jp/amemberList.do",                // アメンバーの編集
+   "room_edit"   :"http://ucsprofile.ameba.jp/ucs/index.do"                   // ルームの編集
+  }],
+ "option_description":[{                     // ★ Description(説明) JSON
+   "controls"    :"基本設定",                // 基本設定
+   "blog_write"  :"ブログを書く",            // ブログを書く
+   "blog_change" :"記事の変更・削除",        // 記事の変更・削除
+   "image_upload":"画像のアップロード",      // 画像のアップロード
+   "comment"     :"コメントの管理",          // コメントの管理
+   "reader"      :"読者の管理",              // 読者の管理
+   "analysis"    :"アクセス解析",            // アクセス解析
+   "ranking"     :"ランキング",              // ランキング
+   "css"         :"ＣＳＳ編集",              // ＣＳＳ編集
+   "sidebar"     :"サイドバーの配置",        // サイドバーの配置
+   "freeplugin"  :"フリープラグイン",        // フリープラグイン
+   "freespace"   :"フリースペース",          // フリースペース
+   "messagebord" :"メッセージボード",        // メッセージボード
+   "ameber"      :"アメンバーの編集",        // アメンバーの編集
+   "room_edit"   :"ルームの編集"             // ルームの編集
+  }],
+ "option_class":[{                           // ★ Class Name JSON
+   "controls"    :"navi_controls",           // 基本設定
+   "blog_write"  :"navi_blog_write",         // ブログを書く
+   "blog_change" :"navi_blog_change",        // 記事の変更・削除
+   "image_upload":"navi_image_upload",       // 画像のアップロード
+   "comment"     :"navi_comment",            // コメントの管理
+   "reader"      :"navi_reader",             // 読者の管理
+   "analysis"    :"navi_analysis",           // アクセス解析
+   "ranking"     :"navi_ranking",            // ランキング
+   "css"         :"navi_css",                // ＣＳＳ編集
+   "sidebar"     :"navi_sidebar",            // サイドバーの配置
+   "freeplugin"  :"navi_freeplugin",         // フリープラグイン
+   "freespace"   :"navi_freespace",          // フリースペース
+   "messagebord" :"navi_messagebord",        // メッセージボード
+   "ameber"      :"navi_ameber",             // アメンバーの編集
+   "room_edit"   :"navi_room_edit"           // ルームの編集
+  }]
+});
+// url set
+var  url_controls             = ameblo_navi_option.option_url[0].controls;
+var  url_blog_write           = ameblo_navi_option.option_url[0].blog_write;
+var  url_blog_change          = ameblo_navi_option.option_url[0].blog_change;
+var  url_image_upload         = ameblo_navi_option.option_url[0].image_upload;
+var  url_comment              = ameblo_navi_option.option_url[0].comment;
+var  url_reader               = ameblo_navi_option.option_url[0].reader;
+var  url_analysis             = ameblo_navi_option.option_url[0].analysis;
+var  url_ranking              = ameblo_navi_option.option_url[0].ranking;
+var  url_css                  = ameblo_navi_option.option_url[0].css;
+var  url_sidebar              = ameblo_navi_option.option_url[0].sidebar;
+var  url_freeplugin           = ameblo_navi_option.option_url[0].freeplugin;
+var  url_freespace            = ameblo_navi_option.option_url[0].freespace;
+var  url_messagebord          = ameblo_navi_option.option_url[0].messagebord;
+var  url_ameber               = ameblo_navi_option.option_url[0].ameber;
+var  url_room_edit            = ameblo_navi_option.option_url[0].room_edit;
+// Description set
+var  description_controls     = ameblo_navi_option.option_description[0].controls;
+var  description_blog_write   = ameblo_navi_option.option_description[0].blog_write;
+var  description_blog_change  = ameblo_navi_option.option_description[0].blog_change;
+var  description_image_upload = ameblo_navi_option.option_description[0].image_upload;
+var  description_comment      = ameblo_navi_option.option_description[0].comment;
+var  description_reader       = ameblo_navi_option.option_description[0].reader;
+var  description_analysis     = ameblo_navi_option.option_description[0].analysis;
+var  description_ranking      = ameblo_navi_option.option_description[0].ranking;
+var  description_css          = ameblo_navi_option.option_description[0].css;
+var  description_sidebar      = ameblo_navi_option.option_description[0].sidebar;
+var  description_freeplugin   = ameblo_navi_option.option_description[0].freeplugin;
+var  description_freespace    = ameblo_navi_option.option_description[0].freespace;
+var  description_messagebord  = ameblo_navi_option.option_description[0].messagebord;
+var  description_ameber       = ameblo_navi_option.option_description[0].ameber;
+var  description_room_edit    = ameblo_navi_option.option_description[0].room_edit;
+// Clss set
+var  class_controls           = ameblo_navi_option.option_class[0].controls;
+var  class_blog_write         = ameblo_navi_option.option_class[0].blog_write;
+var  class_blog_change        = ameblo_navi_option.option_class[0].blog_change;
+var  class_image_upload       = ameblo_navi_option.option_class[0].image_upload;
+var  class_comment            = ameblo_navi_option.option_class[0].comment;
+var  class_reader             = ameblo_navi_option.option_class[0].reader;
+var  class_analysis           = ameblo_navi_option.option_class[0].analysis;
+var  class_ranking            = ameblo_navi_option.option_class[0].ranking;
+var  class_css                = ameblo_navi_option.option_class[0].css;
+var  class_sidebar            = ameblo_navi_option.option_class[0].sidebar;
+var  class_freeplugin         = ameblo_navi_option.option_class[0].freeplugin;
+var  class_freespace          = ameblo_navi_option.option_class[0].freespace;
+var  class_messagebord        = ameblo_navi_option.option_class[0].messagebord;
+var  class_ameber             = ameblo_navi_option.option_class[0].ameber;
+var  class_room_edit          = ameblo_navi_option.option_class[0].room_edit;
+// html Edit
+var html_area="";
+html_area+='<div id="ameblo_mypage_navi"><ul>';
+html_area+='<li><a href="'+url_controls    +'" target="_blank"'+' class="'+class_controls+'">'+description_controls+'</a></li>';
+html_area+='<li><a href="'+url_blog_write  +'" target="_blank"'+' class="'+class_blog_write+'">'+description_blog_write+'</a></li>';
+html_area+='<li><a href="'+url_blog_change +'" target="_blank"'+' class="'+class_blog_change+'">'+description_blog_change+'</a></li>';
+html_area+='<li><a href="'+url_image_upload+'" target="_blank"'+' class="'+class_image_upload+'">'+description_image_upload+'</a></li>';
+html_area+='<li><a href="'+url_comment     +'" target="_blank"'+' class="'+class_comment+'">'+description_comment+'</a></li>';
+html_area+='<li><a href="'+url_reader      +'" target="_blank"'+' class="'+class_reader+'">'+description_reader+'</a></li>';
+html_area+='<li><a href="'+url_analysis    +'" target="_blank"'+' class="'+class_analysis+'">'+description_analysis+'</a></li>';
+html_area+='<li><a href="'+url_ranking     +'" target="_blank"'+' class="'+class_ranking+'">'+description_ranking+'</a></li>';
+html_area+='<li><a href="'+url_css         +'" target="_blank"'+' class="'+class_css+'">'+description_css+'</a></li>';
+html_area+='<li><a href="'+url_sidebar     +'" target="_blank"'+' class="'+class_sidebar+'">'+description_sidebar+'</a></li>';
+html_area+='<li><a href="'+url_freeplugin  +'" target="_blank"'+' class="'+class_freeplugin+'">'+description_freeplugin+'</a></li>';
+html_area+='<li><a href="'+url_freespace   +'" target="_blank"'+' class="'+class_freespace+'">'+description_freespace+'</a></li>';
+html_area+='<li><a href="'+url_messagebord +'" target="_blank"'+' class="'+class_messagebord+'">'+description_messagebord+'</a></li>';
+html_area+='<li><a href="'+url_ameber      +'" target="_blank"'+' class="'+class_ameber+'">'+description_ameber+'</a></li>';
+html_area+='<li><a href="'+url_room_edit   +'" target="_blank"'+' class="'+class_room_edit+'">'+description_room_edit+'</a></li>';
+html_area+='</ul></div>';
+$('body').append(html_area);
+}
+$(document).ready(function() {
+ameblo_mypage_navi();
+});
+
+</script>
+
+<body>
+<br>
+</body>
+
+</html>
