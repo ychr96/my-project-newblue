@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" content="">
+
+
+<title>Waypointsのサンプル</title>
+<link href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<script src="http://javatechnology.net/demo/jquery-waypoints-header/js/waypoints.min.js"></script>
+<script src="http://javatechnology.net/demo/jquery-waypoints-header/js/waypoints-sticky.min.js"></script>
+
+<!-- スクリプト部分 -->
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.my-sticky-element').waypoint('sticky');
+});
+// outerの調整
+$(document).ready(function() {
+var outer_position=$(".outer").offset().top;// ★ outer の位置を求める
+$(window).scroll(function () {
+ if($(this).scrollTop() > outer_position) { // ★ outer の位置を超えたらstuckのクラスを消する
+  $(".my-sticky-element").removeClass("stuck");
+ }else{                                     // ★ outer の位置が戻ったらstuckのクラスを追加する
+  $(".my-sticky-element").addClass("stuck");
+ }
+});
+});
+</script>
+
+<!-- CSS -->
+<style>
+
+	.my-sticky-element.stuck {
+		position:fixed;
+		top:0;
+		box-shadow:0 2px 4px rgba(0, 0, 0, .3);
+	}
+
+	.inner {
+		width:460px;
+		padding:0 10px;
+		margin:0 auto;
+	}
+
+	h2.my-sticky-element {
+		text-align:center;
+		background:#ff9400;
+		color:#000;
+		width:460px;
+		margin:0 auto;
+		font-size:24px;
+		border:solid 4px #ccc;
+	}
+
+	div.main-contents{
+		margin:0 auto;
+
+		width : 460px;
+
+		border:solid 4px #ccc;
+		background:#b0d0ff;
+	}
+</style>
+</head>
+<!-- HTML部分 -->
+<body bgcolor="#e2e2e2">
+
+<div class="inner">
+<h1>Waypointsのサンプル</h1>
+<h2 class="my-sticky-element">This is Header!!</h2>
+</div>
+
+<div class="inner">
+<div class="main-contents">
+<h3>ヘッダーが固定されます。</h3>
+<div>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+</div>
+</div>
+</div>
+<!--{*↓追加 *]-->
+<div class="outer">
+<div class="main-contents">
+<h3>ヘッダーが固定されません。</h3>
+<div>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+<p>test test test!!</p>
+</div>
+</div>
+</div>
+<!--{*↑追加 *]-->
+</body>
+</html>
+
