@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>簡単計算</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+function keisan(){
+var in_data=$("#keisanin").val();
+$("#kekka").val(eval(in_data));// eval 使用
+}
+</script>
+
+</head>
+
+<!-- HTML部分 -->
+<body>
+計算式入力：<input type="text" name="add" size="40" id="keisanin">＝<input type="text" name="reslut" size="10" readonly id="kekka">
+<br><input type="button" name="exec" value="計算" onclick="keisan()">
+</body>
+</html>
+
