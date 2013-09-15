@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML lang="ja-JP">
+<HEAD>
+ <TITLE>image test</TITLE>
+	<META http-equiv="X-UA-Compatible" content="IE=8">
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<META http-equiv="Content-Script-Type" content="text/javascript">
+	<BASE href="http://kiyoto777.web.fc2.com/test/">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" type="text/javascript" ></script>
+<script type="text/javascript">
+$(document).ready(function() { // HTMLが読み込まれるまで待つ ( $(document).ready )
+var switchDelay = 2000;                                      //  間隔時間の設定
+$(function() {setInterval( "slideshow()", switchDelay );});  //　スライドショーを一定間隔で繰り返す
+});
+// スライドショー
+function slideshow(){
+var fadeSpeed = 1000;                                        // フェードスピード
+var active_img=$("#slideshow img.active");                   // 現在表示の画像(★)
+var next_img=active_img.next();                              // 次の表示の画像(■)は？ next()
+if(typeof next_img.attr("src")=="undefined"){                // 最後まで到達して next()がなければ？  
+ next_img=$("#slideshow img:first");                         // 最初の画像を次の表示の画像(■)とする。
+}
+active_img.addClass("last-active");                          // 現在表示の画像(★)を最後の画像にする。
+next_img.css({opacity: 0.0}).addClass('active')              // 次の表示の画像(■)を現在の一番上の画像とする。
+   .animate({opacity: 1.0}, fadeSpeed,                       // 次の表示の画像(■)を徐々に表示させる。
+    function() {
+     active_img.removeClass('active last-active');           // 完了したら現在表示の画像(★)を通常画像にする。
+    });
+}
+</script>
+<style type="text/css">
+#slideshow { position:relative; width:100px;height:100px;}   /* 相対配置                                         */
+#slideshow img { position:absolute; top:0;left:0; z-index:8;}/* 通常画像は一番下  （順番待画像)                  */
+#slideshow img.active { z-index:10;}                         /* フェードしてopacity 0→1.0の画像は一番上         */
+#slideshow img.last-active { z-index:9;}                     /* 現在表示している画像は真ん中(active last-active) */
+</style>
+</head>
+<body>
+<div id="slideshow">
+<img src="gaz1.gif" class="active">
+<img src="gaz2.gif">
+<img src="gaz3.gif">
+<img src="gaz4.gif">
+<img src="gaz5.gif">
+</div>
+</BODY>
+</HTML>
+
