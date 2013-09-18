@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<title>特売</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<style type="text/css">
+.sale{             /* 特売   */
+background:#FF0000;/* 背景色 */
+color:#FFFFFF;     /* 文字色 */
+visibility:hidden; /* 非表示 */
+}
+</style>
+<script type="text/javascript">
+function sale_set(){
+ var today        = new Date( );
+ var today_month  = today.getMonth()  + 1;
+ var criteria_day = today_month * 100 + today.getDate();
+ var sale_range;
+ $(".sale").each(function(){
+  sale_range=$(this).attr("rel").split(",");
+//  alert("sale_range="+sale_range[0]+"～"+sale_range[1]+" criteria_day="+criteria_day);
+  if (( sale_range[0] <= criteria_day ) && ( criteria_day <= sale_range[1] )){
+   $(this).css("visibility","visible");
+  }
+ });
+}
+$(document).ready(function() {
+sale_set();
+});
+
+</script>
+
+</head>
+
+<!-- HTML部分 -->
+<body>
+<span class="sale" rel="831,911">特売</span> 靴下M<br>
+<span class="sale" rel="911,921">特売</span> 靴下L<br>
+</body>
+</html>
+
