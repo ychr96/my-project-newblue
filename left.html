@@ -4,7 +4,6 @@
 <TITLE></TITLE>
 <SCRIPT type="text/JavaScript">
 <!--
-// 左右のフレームを同時にスクロールする
 window.onscroll=scrPage;
 function scrPage() {
   parent.right.lfScr(document.documentElement.scrollTop || document.body.scrollTop);
@@ -12,7 +11,6 @@ function scrPage() {
 function lfScr(y) {
   scrollTo(0,y);
 }
-
 //-->
 </SCRIPT>
 </HEAD>
