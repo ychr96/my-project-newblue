@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <HEAD>
-<TITLE>google Clendar Test before now next calendar</TITLE>
+<TITLE>テスト</TITLE>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script type="text/javascript">
 function google_calendar_set(){
@@ -9,32 +9,32 @@ var dates="";
 var calendar_url="https://www.google.com/calendar/embed?src=kiyoto_777%40yahoo.co.jp&amp;ctz=Asia/Tokyo";
 var calendar_iframe1='<iframe width="300" scrolling="no" height="250" frameborder="0" style="border: 0" src="';
 var calendar_iframe2='"></iframe>';
-// ÌN
+// 翌月の年月
 var today        = new Date();
-var year_next    = today.getYear();              // N
-var month_next   = today.getMonth() + 2;         // 
+var year_next    = today.getYear();              // 年
+var month_next   = today.getMonth() + 2;         // 月
 if(month_next>12){month_next=1;year_next=year_next+1;}
-// OÌN
-var year_before  = today.getYear();              // N
-var month_before = today.getMonth();             // 
+// 前月の年月
+var year_before  = today.getYear();              // 年
+var month_before = today.getMonth();             // 月
 if(month_before<1){month_before=12;year_before=year_before-1;}
-// NÌ®`
+// 年月の整形
 if(year_next    < 2000) { year_next += 1900; }
 if(month_next   < 10)   { month_next = "0"   + month_next; }
 if(year_before  < 2000) { year_before += 1900; }
 if(month_before < 10)   { month_before = "0"   + month_before; }
-// fobOp
-//alert("="+String(year_next)+String(month_next)+"01");
-//alert("O="+String(year_before)+String(month_before)+"01");
-// 
+// デバッグ用
+//alert("翌月="+String(year_next)+String(month_next)+"01");
+//alert("前月="+String(year_before)+String(month_before)+"01");
+// 翌月
 dates="&dates="+String(year_next)+String(month_next)+"01"+"/"+String(year_next)+String(month_next)+"01";
 dates+=dates;
 var calendar_iframe_next=calendar_iframe1+calendar_url+dates+calendar_iframe2;
-// O
+// 前月
 dates="&dates="+String(year_before)+String(month_before)+"01"+"/"+String(year_before)+String(month_before)+"01";
 dates+=dates;
 var calendar_iframe_before=calendar_iframe1+calendar_url+dates+calendar_iframe2;
-// 
+// 当月
 var calendar_iframe_now=calendar_iframe1+calendar_url+calendar_iframe2;
 
 $('.calendar_before').after(calendar_iframe_before);
@@ -51,4 +51,3 @@ google_calendar_set();
 <span class="calendar_before"></span><span class="calendar_now"></span><span class="calendar_next"></span>
 </body>
 </HTML>
-
