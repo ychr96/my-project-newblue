@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>簡単な画像ポップアップ</TITLE>
+<base href="http://kiyoto777.web.fc2.com">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+function simpleimgPOP1(Psel,fade1){         //　シンプル画像のポップアップ（右クリック禁止）
+$(Psel).click(function(){                   // クリックされた時
+var img_src=$(this).find("img").attr("src");// 画像のＵＲＬを求める
+if(typeof(img_src)!="undefined"){           // 画像のＵＲＬが見つかった場合
+$('body').append('<div id="P_img" style="display:none;position:fixed;z-index:9801;"><img src="'+img_src+'" onContextmenu="return false" id="P_imgx"></div><div id="backg01" style="position:fixed;top:0;left:0;width:100%;height:100%;display:none;background-color:#000000;filter: alpha(opacity=50);opacity: 0.50;z-index:9800;"></div>');// ポップアップ部分の作成
+var w=$(window).width();var h=$(window).height();                               // ウインドウの幅・高さ
+var img = new Image();img.src=img_src;var width=img.width;var height=img.height;// 画像の幅・高さ
+var lp=w/2-width/2;var tp=h/2-height/2;                                         // 画像の幅・高さ(二分の１)
+$("#backg01").fadeIn(75);                                                       // 全体背景を暗くする
+$("#P_img").css('top',tp+'px').css('left',lp+'px').fadeIn(fade1);               // 画像を表示する
+$("#P_img").click(function(){$(this).fadeOut(fade1).remove();$("#backg01").remove();});// 画像がクリックされたら消える
+window.onresize = function() {                      // ウインドウの大きさが変わった場合
+w=$(window).width();h=$(window).height();           // ウインドウの幅・高さ
+lp=w/2-width/2;tp=h/2-height/2;                     // 画像の幅・高さ(二分の１)
+$("#P_img").css('top',tp+'px').css('left',lp+'px'); // 画像の位置
+};return false;}});}
+// スクリプト ロード
+$(document).ready(function(){
+simpleimgPOP1("a.popupimg",1500);// selector fadeTime
+});
+</script>
+<style type="text/css">
+/* ------------------------------------------- */
+/* シンプル画像ポップアップの調整　　　　　　　*/
+/* ------------------------------------------- */
+#backg01{/* 全体背景 */
+background-color:#444444 !important;/* 背景色 */
+}
+#P_imgx{/* 画像 */
+border:30px solid #dddddd;/* 画像枠 */
+}
+/* ------------------------------------------- */
+body{
+background-color:#000000;
+}
+.test_image{
+margin:auto;
+width:530px;
+border:3px dotted #ff0000;
+padding:20px;
+}
+</style>
+</head>
+<body>
+<br><br><br><br><br><br><br>
+
+<div class="test_image">
+<a href="#" class="popupimg"><img src="./test/gaz1.gif" width="50"></a>　
+<a href="#" class="popupimg"><img src="./test/gaz2.gif" width="50"></a>　
+<a href="#" class="popupimg"><img src="./test/gaz3.gif" width="50"></a>　
+<a href="#" class="popupimg"><img src="./test/gaz4.gif" width="50"></a>　
+<a href="#" class="popupimg"><img src="./test/gaz5.gif" width="50"></a>　
+<a href="#" class="popupimg"><img src="./test/gaz6.gif" width="50"></a>　
+<a href="#" class="popupimg"><img src="./test/gaz7.gif" width="50"></a>　
+</div>
+</body>
+</HTML>
+
+
+
