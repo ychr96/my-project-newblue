@@ -47,6 +47,7 @@ google.load("feeds", "1");
 $(function(){
 // 日付フォーマット(dateformat.jsを利用)
  var dateFormat = new DateFormat("yyyy年MM月dd日");
+ var count=0; // 記事番号
  google.setOnLoadCallback(function(){
 // Google Ajax Feedを非同期タスク化 使用方法:GfeedTask(タスク名,URL,表示件数)
   var GfeedTask = function(name,url, num){
@@ -65,7 +66,8 @@ $(function(){
             var content = entry.content.replace(/\n/g, '<br>');
             // HTMLセット
             if(entry.link.indexOf("ameblo.jp/new-blue-777")!=-1){
-              $('#blog-news').append('<div class="blogs"><ul><li>'+ dateStr +'<h2><a href="' + entry.link + '" target="_blank" >' + entry.title + '</a> </h2><h3>' + hogeBlogName + '</h3></li></ul><br><div class="content"><span>本文</span><br>'+content+'</div></div>');
+              count++;
+              $('#blog-news').append('<div class="blogs">Number'+count+'<br><ul><li>'+ dateStr +'<h2><a href="' + entry.link + '" target="_blank" >' + entry.title + '</a> </h2><h3>' + hogeBlogName + '</h3></li></ul><br><div class="content"><span>本文</span><br>'+content+'</div></div>');
             }
           }
          dfd.resolve('task success');
@@ -80,7 +82,7 @@ $(function(){
   var feed_url1 = "http://feedblog.ameba.jp/rss/ameblo/new-blue-777/rss20.xml";
 // GfeedTask('適当なタスク名', Feed URL, 表示件数)
   $.when( 
-   GfeedTask('task01', feed_url1, 10)
+   GfeedTask('task01', feed_url1, 100)
     ).then(
     function(res) {
 //          console.log('GfeedTask  Success');
