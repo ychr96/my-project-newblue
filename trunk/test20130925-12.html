@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>ƒeƒXƒg hover ŒJ‚è•Ô‚µ</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+var Timers;
+$(document).ready(function() {
+$("#demo18").hover(function(e) {
+   Timers=setInterval("demo18_move()",75);
+},function(e){
+    clearInterval(Timers);
+});
+});
+function demo18_move(){
+   $("#demo18").not(":animated")
+    .animate({top:"-20"},400)
+    .animate({top:"30" },300)
+    .animate({top:"-10"},200)
+    .animate({top:"30" },200)
+    .animate({top:"-20"},200)
+    .animate({top:"5"  },100)
+    .animate({top:"0"  },50);
+}
+</script>
+<style type="text/css">
+#demos{
+width:800px;
+height:400px;
+border:1px solid #ff00ff;
+margin:auto;
+margin-top:100px;
+}
+#demo18{
+position:relative;
+top:0;
+left:0;
+border:1px solid #ff0000;
+width:100px;
+height:100px;
+background-color:#000000;
+color:#ffffff;
+display:block;
+}
+</style>
+</head>
+<body>
+<div id="demos">
+<div id="demo18">demo18</div>
+</div>
+</body>
+</HTML>
+
