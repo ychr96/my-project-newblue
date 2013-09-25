@@ -32,6 +32,9 @@ width:600px;
 margin:auto;
 margin-bottom:30px;
 }
+#fc2_qr_code_header{
+display:none;
+}
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://kiyoto777.web.fc2.com/test/dateformat.js"></script>
@@ -57,12 +60,11 @@ $(function(){
             var entry = entries[i];
             // 日付セット
             var dateStr = dateFormat.format(new Date(entry.publishedDate));
-            // ブログタイトル名
+            // ブログタイトル名の変更
             var hogeBlogName = result.feed.title;
-            // 記事本文 \n→<br> 変換
             var content = entry.content.replace(/\n/g, '<br>');
             // HTMLセット
-            if(entry.link.indexOf("ameblo.jp/new-blue-777")!=-1){ // 広告削除
+            if(entry.link.indexOf("ameblo.jp/new-blue-777")!=-1){
               $('#blog-news').append('<div class="blogs"><ul><li>'+ dateStr +'<h2><a href="' + entry.link + '" target="_blank" >' + entry.title + '</a> </h2><h3>' + hogeBlogName + '</h3></li></ul><br><div class="content"><span>本文</span><br>'+content+'</div></div>');
             }
           }
@@ -75,7 +77,7 @@ $(function(){
     return dfd.promise();
   };
 // Feed URLを指定
-  var feed_url1 = "http://rssblog.ameba.jp/new-blue-777/rss.html";
+  var feed_url1 = "http://feedblog.ameba.jp/rss/ameblo/new-blue-777/rss20.xml";
 // GfeedTask('適当なタスク名', Feed URL, 表示件数)
   $.when( 
    GfeedTask('task01', feed_url1, 10)
@@ -96,5 +98,6 @@ $(function(){
 <div id="blog-news"></div>
 </body>
 </html>
+
 
 
