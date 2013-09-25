@@ -1,0 +1,98 @@
+<!DOCKTYPE  html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+body {
+ font-size: 12px;
+ background-color:#000000;
+ color:#ffffff;
+}
+.content{
+padding:20px;
+border:5px dotted #ff0000;
+display:block;
+width:500px;
+}
+.content span{
+color:#ff0000;
+font-size:22px;
+}
+#blog-news ul{
+padding:20px;
+border:5px dotted #ff00ff;
+display:block;
+width:500px;
+}
+#blog-news .blogs{
+padding:20px;
+border:5px dotted #ffffff;
+display:block;
+width:600px;
+margin:auto;
+margin-bottom:30px;
+}
+
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://kiyoto777.web.fc2.com/test/dateformat.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+// https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://rssblog.ameba.jp/new-blue-777/rss.html&num=-1
+google.load("feeds", "1");
+$(function(){
+// 日付フォーマット(dateformat.jsを利用)
+ var dateFormat = new DateFormat("yyyy年MM月dd日");
+ google.setOnLoadCallback(function(){
+// Google Ajax Feedを非同期タスク化 使用方法:GfeedTask(タスク名,URL,表示件数)
+  var GfeedTask = function(name,url, num){
+      var feed = new google.feeds.Feed(url);
+      feed.setNumEntries(num);
+      var dfd = $.Deferred();
+      feed.load(function(result){
+        if (!result.error) {
+          var entries = result.feed.entries;
+          for (var i = 0; i < entries.length; i++) {
+            var entry = entries[i];
+            // 日付セット
+            var dateStr = dateFormat.format(new Date(entry.publishedDate));
+            // ブログタイトル名の変更
+            var hogeBlogName = result.feed.title;
+            var content = entry.content.replace(/\n/g, '<br>');
+            // HTMLセット
+            if(entry.link.indexOf("ameblo.jp/new-blue-777")!=-1){
+              $('#blog-news').append('<div class="blogs"><ul><li>'+ dateStr +'<h2><a href="' + entry.link + '" target="_blank" >' + entry.title + '</a> </h2><h3>' + hogeBlogName + '</h3></li></ul><br><div class="content"><span>本文</span><br>'+content+'</div></div>');
+            }
+          }
+         dfd.resolve('task success');
+        }
+        else{
+         dfd.reject(name);
+        }
+      });
+    return dfd.promise();
+  };
+// Feed URLを指定
+  var feed_url1 = "http://rssblog.ameba.jp/new-blue-777/rss.html";
+// GfeedTask('適当なタスク名', Feed URL, 表示件数)
+  $.when( 
+   GfeedTask('task01', feed_url1, 10)
+    ).then(
+    function(res) {
+//          console.log('GfeedTask  Success');
+    }, 
+    function(res) {
+//         console.log('GfeedTask Error: task = ' + res);
+    }
+  );
+});
+});
+</script>
+<title>Google Ajax Feed & Deferred(promise) Test</title>
+</head>
+<body>
+<div id="blog-news"></div>
+</body>
+</html>
+
+
