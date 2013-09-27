@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>知恵袋 q11114111026 テスト</TITLE>
+<base href="http://kiyoto777.web.fc2.com/" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$(".image_navi img").dblclick(function(){// テーブル内画像をダブルクリック
+$(".layout_b_First").before('<img src="'+$(this).attr("src")+'" alt="'+$(this).attr("alt")+'">');// 画像の追加
+$('#layout_b img').draggable();// ドラッグ＆ドロップアウト（自動移動）の再実行
+});
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+$('#layout_b img').draggable();// ドラッグ＆ドロップアウト（自動移動）の実行(Firest用)
+});
+</script>
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+}
+#layout_b{/* 画像表示エリア */
+width:800px;
+height:300px;
+border:2px solid #ff0000;
+display:block;
+padding:5px;
+}
+#layout_b img{ /* 移動画像 */
+position:relative;
+}
+#left{/* 左エリア */
+width:800px;
+display:block;
+}
+
+</style>
+</HEAD>
+<body>
+<div id="container">
+ <div id="left">
+  <span id="layout_b">
+    <img alt="" src="./test/gaz0.gif" /><span class="layout_b_First"></span>
+  </span>
+  <div id="thumbnail" align="center">
+   <table id="thumbs_b">
+   <td><span class="image_navi"><img alt="P0" src="./test/gaz0.gif" width="30" heigt="30"></span></td>
+   <td><span class="image_navi"><img alt="P1" src="./test/gaz1.gif" width="30" heigt="30"></span></td>
+   <td><span class="image_navi"><img alt="P2" src="./test/gaz2.gif" width="30" heigt="30"></span></td>
+   <td><span class="image_navi"><img alt="P3" src="./test/gaz3.gif" width="30" heigt="30"></span></td>
+   <td><span class="image_navi"><img alt="P4" src="./test/gaz4.gif" width="30" heigt="30"></span></td>
+   <td><span class="image_navi"><img alt="P5" src="./test/gaz5.gif" width="30" heigt="30"></span></td>
+   <td><span class="image_navi"><img alt="P6" src="./test/gaz6.gif" width="30" heigt="30"></span></td>
+   </table>
+  </div>
+ </div>
+</div>
+</body>
+</HTML>
+
