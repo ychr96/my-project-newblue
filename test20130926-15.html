@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>知恵袋 </TITLE>
+
+<script type="text/javascript">
+function value_seek(form_name,kaito_name){// 値を求める関数
+var obj         = eval(form_name+"."+kaito_name);
+var kaito_index = obj.selectedIndex;
+var kaito       = obj[kaito_index].value;
+var kaitot      = obj[kaito_index].text;
+return {ans_value:kaito,ans_text:kaitot};
+}
+
+function saiten_window() {
+var obj,form_names="mondai",kaito_names="kaito",j=1,data="",cnt=0,kaitov=new Array(),kaitot=new Array();
+var q_des = new Array("①","②","③","④","⑤","⑥","⑦","⑧","⑨","⑩");// 番号
+var hantei= new Array("×","×","×","×","×","×","×","×","×","×");// ○×判定
+var ans   = new Array("ア","イ","ウ","エ","オ","カ","ア","イ","ウ","エ");// 正解
+for(i=0;i<hantei.length;i++){
+ obj = value_seek(form_names,kaito_names+j);         // 値を求める関数を呼び出す
+ kaitov[i]=obj.ans_value;                            // 値
+ kaitot[i]=obj.ans_text;                             // テキスト
+ if(kaitot[i]==ans[i])  {hantei[i]="○";cnt += 10;}  // 正解判別
+ data += "問"+q_des[i]+kaitot[i]+":"+hantei[i]+" 正解("+ans[i]+")\n"; // 編集
+ j++;
+}
+data += "\nあなたの点数は100点満点中"+cnt+"点です。"; // 編集
+alert(data);
+}
+</script>
+<style type="text/css">
+body{
+margin:0;
+width:100%;
+background:#000000;
+color:#ffffff;
+}
+#formname{
+margin:auto;
+width:200px;
+}
+</style>
+</head>
+<body>
+<br><br><br><br>
+<form method="get" name="mondai" id="formname">
+(①<select name="kaito1">
+<option value="0" selected>未回答</option>
+<option value="1">ア</option>
+<option value="2">イ</option>
+<option value="3">ウ</option>
+<option value="4">エ</option>
+<option value="5">オ</option>
+<option value="6">カ</option>
+</select> )<br>
+(②<select name="kaito2">
+<option value="0" selected>未回答</option>
+<option value="1">ア</option>
+<option value="2">イ</option>
+<option value="3">ウ</option>
+<option value="4">エ</option>
+<option value="5">オ</option>
+<option value="6">カ</option>
+</select> )<br>
+(③<select name="kaito3">
+<option value="0" selected>未回答</option>
+<option value="1">ア</option>
+<option value="2">イ</option>
+<option value="3">ウ</option>
+<option value="4">エ</option>
+<option value="5">オ</option>
+<option value="6">カ</option>
+</select> )<br>
+(④<select name="kaito4">
+<option value="0" selected>未回答</option>
+<option value="1">ア</option>
+<option value="2">イ</option>
+<option value="3">ウ</option>
+<option value="4">エ</option>
+<option value="5">オ</option>
+<option value="6">カ</option>
+</select> )<br>
+(⑤<select name="kaito5">
+<option value="0" selected>未回答</option>
+<option value="1">ア</option>
+<option value="2">イ</option>
+<option value="3">ウ</option>
+<option value="4">エ</option>
+<option value="5">オ</option>
+<option value="6">カ</option>
+</select> )<br>
+(⑥<select name="kaito6">
+<option value="0" selected>未回答</option>
+<option value="1">ア</option>
+<option value="2">イ</option>
+<option value="3">ウ</option>
+<option value="4">エ</option>
+<option value="5">オ</option>
+<option value="6">カ</option>
+</select> )<br>
+(⑦<select name="kaito7">
+<option value="0" selected>未回答</option>
+<option value="1">ア</option>
+<option value="2">イ</option>
+<option value="3">ウ</option>
+<option value="4">エ</option>
+<option value="5">オ</option>
+<option value="6">カ</option>
+</select> )<br>
+(⑧<select name="kaito8">
+<option value="0" selected>未回答</option>
+<option value="1">ア</option>
+<option value="2">イ</option>
+<option value="3">ウ</option>
+<option value="4">エ</option>
+<option value="5">オ</option>
+<option value="6">カ</option>
+</select> )<br>
+(⑨<select name="kaito9">
+<option value="0" selected>未回答</option>
+<option value="1">ア</option>
+<option value="2">イ</option>
+<option value="3">ウ</option>
+<option value="4">エ</option>
+<option value="5">オ</option>
+<option value="6">カ</option>
+</select> )<br>
+(⑩<select name="kaito10">
+<option value="0" selected>未回答</option>
+<option value="1">ア</option>
+<option value="2">イ</option>
+<option value="3">ウ</option>
+<option value="4">エ</option>
+<option value="5">オ</option>
+<option value="6">カ</option>
+</select> )<br>
+<br>
+<input type="reset" value="リセット"	>　
+<input type="button" value="回答" onclick="saiten_window()">
+</form>
+</body>
+</HTML>
+
