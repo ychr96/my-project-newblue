@@ -8,14 +8,14 @@
 <script type="text/javascript">
 $(document).ready(function(){
 $(".image_navi img").dblclick(function(){// テーブル内画像をダブルクリック
-$(".layout_b_First").before('<img src="'+$(this).attr("src")+'" alt="'+$(this).attr("alt")+'">');// 画像の追加
+$(".layout_b_add").before('<img src="'+$(this).attr("src")+'" alt="'+$(this).attr("alt")+'">');// 画像の追加
 $('#layout_b img').draggable();// ドラッグ＆ドロップアウト（自動移動）の再実行
 });
 });
 </script>
 <script type="text/javascript">
 $(document).ready(function(){
-$('#layout_b img').draggable();// ドラッグ＆ドロップアウト（自動移動）の実行(Firest用)
+$('#layout_b img').draggable();// ドラッグ＆ドロップアウト（自動移動）の実行(初期)
 });
 </script>
 <style type="text/css">
@@ -43,7 +43,7 @@ display:block;
 <div id="container">
  <div id="left">
   <span id="layout_b">
-    <img alt="" src="./test/gaz0.gif" /><span class="layout_b_First"></span>
+    <img alt="" src="./test/gaz0.gif" /><span class="layout_b_add"></span>
   </span>
   <div id="thumbnail" align="center">
    <table id="thumbs_b">
