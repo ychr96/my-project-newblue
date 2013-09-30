@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>知恵袋 </TITLE>
+<style type="text/css">
+.fixed_gnav{
+position:fixed;
+top:100px;
+left:100px;
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+function scroll_sm(click_this,topPosition_this,speed_sw,sm_timex) {// スムーズスクロール
+/* 引数 onclickのthis,onclickのoffsetTop,100px単位どうか,スピート) */
+/* ex onclick="scroll_sm(this,this.offsetTop,1,400);"             */
+  var clickhrefw=click_this.href;
+  var sm_time=sm_timex;
+  var clickhref=clickhrefw.substring(clickhrefw.indexOf("#",0),clickhrefw.length);
+  if((clickhref.charAt(0)=="#")&&(clickhref!="#")){
+    var topPosition = $(clickhref).offset().top;
+    if(speed_sw==1){// 100px単位のスピード
+      var topPosition_len=Math.abs(topPosition-topPosition_this)/100;
+      sm_time=sm_timex*topPosition_len;
+    }
+    $('html,body').animate({ scrollTop: topPosition }, sm_time);
+    return false;
+  }else{
+    if((clickhref=="#")){
+      $('html,body').animate({ scrollTop: 0 }, sm_time);
+      return false;
+    }
+  }
+}
+</script>
+</head>
+<body>
+<br><br><br><br>
+<div class="fixed_gnav">ナビ</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<a href="#" onclick="scroll_sm(this,this.offsetTop,1,400);return false">上へ</a>
+</body>
+</HTML>
+
