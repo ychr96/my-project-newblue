@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<META HTTP-EQUIV="Content-Script-Type" CONTENT="text/javascript">
+<META HTTP-EQUIV="Content-Style-Type"  CONTENT="text/css">
+<TITLE>知恵袋 q14114297384</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<SCRIPT TYPE="text/javascript">
+$.fn.extend({
+ tab_controls:function(){alert("start");
+  var page_hash = new Array ();
+//  var lsearch   = location.search;
+  var lhash     = location.hash.replace(/#/g, "");
+  var i=0;
+  $(this).each(function(){
+   page_hash[i]=$(this).attr("href").replace(/#/g, "");
+   i++;
+  });
+  for(i=0;i<page_hash.length;i++){
+   if(lhash!=page_hash[i]){$('#'+page_hash[i]).css("display","none");};
+  }
+  $(this).click(function(){
+   for(i=0;i<page_hash.length;i++){
+    $('#'+page_hash[i]).css("display","none");
+   }
+   $($(this).attr("href")).css("display","block");
+  });
+ }
+});
+$(document).ready(function(){
+$('ul#tab a').tab_controls();
+});
+</SCRIPT>
+<style type-"text/css">
+.main #tab li {
+float: left;
+width: 64px;
+list-style-type: none;
+}
+.main .tabs{
+width:800px;
+height:100px;
+}
+.tabs_area{
+overflow:hidden;
+position:relative;
+width:800px;
+height:100px;
+display:block;
+}
+.main #tab{
+overflow:hidden;
+border-bottom:1px solid #777777;
+padding:10px;
+}
+.main #tab a{
+border:1px solid #aaaaaa;
+display:block;
+padding:3px;
+text-decoration:none;
+}
+body,a{
+color:#ffffff;
+background-color:#000000;
+}
+#container{
+width:900px;
+margin:auto;
+}
+.side .tabs{
+width:800px;
+height:100px;
+}
+.side #tab li {
+width: 64px;
+list-style-type: none;
+}
+.side{
+width:200px;
+border:1px solid #aaaaaa;
+height:300px;
+display:block;
+float:left;
+margin-bottom:20px;
+}
+.side #tab{
+overflow:hidden;
+padding:10px;
+margin:auto;
+width:60px;
+}
+.side #tab a{
+border:1px solid #aaaaaa;
+display:block;
+padding:3px;
+text-decoration:none;
+}
+</style>
+</HEAD>
+<BODY>
+
+<div id="container">
+<div class="main">
+<ul id="tab">
+<li><a href="#page1">Page_1</a></li>
+<li><a href="#page2">Page_2</a></li>
+<li><a href="#page3">Page_3</a></li>
+<li><a href="#page4">Page_4</a></li>
+<li><a href="#page5">Page_5</a></li>
+</ul>
+</div>
+<div class="side">
+<ul id="tab">
+<li><a href="#page1">Page_1</a></li>
+<li><a href="#page2">Page_2</a></li>
+<li><a href="#page3">Page_3</a></li>
+<li><a href="#page4">Page_4</a></li>
+<li><a href="#page5">Page_5</a></li>
+</ul>
+</div>
+<br>
+<br>
+<br>
+<div class="tabs_area">
+<div id="page1" class="tabs">11111 11111 11111 11111 11111 11111 11111 11111 11111 11111 11111 11111 11111 11111 11111 </div>
+<div id="page2" class=" tabs">22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 22222 </div>
+<div id="page3" class=" tabs">33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 33333 </div>
+<div id="page4" class=" tabs">44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 44444 </div>
+<div id="page5" class=" tabs">55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 55555 </div>
+</div>
+</div>
+
+</BODY>
+</HTML>
