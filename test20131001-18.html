@@ -7,32 +7,51 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <SCRIPT TYPE="text/javascript">
 $.fn.extend({
- tab_controls:function(){alert("start");
-  var page_hash = new Array ();
-//  var lsearch   = location.search;
-  var lhash     = location.hash.replace(/#/g, "");
+ tab_controls:function(){
+  var page_hash    = new Array ();
+  var current_page;
+//  var lsearch    = location.search;
+  var lhash        = location.hash.replace(/#/g, "");
   var i=0;
   $(this).each(function(){
+   $(this).removeClass("currenr_select");
    page_hash[i]=$(this).attr("href").replace(/#/g, "");
+   if(lhash!=page_hash[i]){
+    $(this).removeClass("currenr_select");
+    $('#'+page_hash[i]).css("display","none");
+   }else{
+    $(this).addClass("currenr_select");
+   }
    i++;
   });
-  for(i=0;i<page_hash.length;i++){
-   if(lhash!=page_hash[i]){$('#'+page_hash[i]).css("display","none");};
-  }
   $(this).click(function(){
+   current_page=$(this).attr("href");
+   current_set(current_page);
+   $(this).addClass("currenr_select");
    for(i=0;i<page_hash.length;i++){
     $('#'+page_hash[i]).css("display","none");
    }
    $($(this).attr("href")).css("display","block");
+   return false;
   });
+  function current_set(current_pages){
+   $('.tab a').each(function(){
+     if(current_pages==$(this).attr("href")){
+        $(this).addClass("currenr_select");
+     }else{
+        $(this).removeClass("currenr_select");
+     }
+   });
+  }
  }
 });
+
 $(document).ready(function(){
-$('ul#tab a').tab_controls();
+$('.tab a').tab_controls();
 });
 </SCRIPT>
 <style type-"text/css">
-.main #tab li {
+.main .tab li {
 float: left;
 width: 64px;
 list-style-type: none;
@@ -48,12 +67,12 @@ width:800px;
 height:100px;
 display:block;
 }
-.main #tab{
+.main .tab{
 overflow:hidden;
 border-bottom:1px solid #777777;
 padding:10px;
 }
-.main #tab a{
+.main .tab a{
 border:1px solid #aaaaaa;
 display:block;
 padding:3px;
@@ -71,7 +90,7 @@ margin:auto;
 width:800px;
 height:100px;
 }
-.side #tab li {
+.side .tab li {
 width: 64px;
 list-style-type: none;
 }
@@ -83,17 +102,20 @@ display:block;
 float:left;
 margin-bottom:20px;
 }
-.side #tab{
+.side .tab{
 overflow:hidden;
 padding:10px;
 margin:auto;
 width:60px;
 }
-.side #tab a{
+.side .tab a{
 border:1px solid #aaaaaa;
 display:block;
 padding:3px;
 text-decoration:none;
+}
+.tab a.currenr_select{
+background-color:#ff0000;
 }
 </style>
 </HEAD>
@@ -101,8 +123,8 @@ text-decoration:none;
 
 <div id="container">
 <div class="main">
-<ul id="tab">
-<li><a href="#page1">Page_1</a></li>
+<ul class="tab">
+<li><a href="#page1" class="currenr_select">Page_1</a></li>
 <li><a href="#page2">Page_2</a></li>
 <li><a href="#page3">Page_3</a></li>
 <li><a href="#page4">Page_4</a></li>
@@ -110,8 +132,8 @@ text-decoration:none;
 </ul>
 </div>
 <div class="side">
-<ul id="tab">
-<li><a href="#page1">Page_1</a></li>
+<ul class="tab">
+<li><a href="#page1" class="currenr_select">Page_1</a></li>
 <li><a href="#page2">Page_2</a></li>
 <li><a href="#page3">Page_3</a></li>
 <li><a href="#page4">Page_4</a></li>
