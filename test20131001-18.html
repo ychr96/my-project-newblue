@@ -8,33 +8,31 @@
 <SCRIPT TYPE="text/javascript">
 $.fn.extend({
  tab_controls:function(){
-  var page_hash    = new Array ();
-  var current_page;
-//  var lsearch    = location.search;
-  var lhash        = location.hash.replace(/#/g, "");
+  var page_hash    = new Array ();// ページの種類テーブル
+  var current_page; // 現在のページ
+  var lhash        = location.hash.replace(/#/g, "");// #を消す
   var i=0;
-  $(this).each(function(){
+  $(this).each(function(){                             // 初期ロード処理
    $(this).removeClass("currenr_select");
-   page_hash[i]=$(this).attr("href").replace(/#/g, "");
-   if(lhash!=page_hash[i]){
-    $(this).removeClass("currenr_select");
-    $('#'+page_hash[i]).css("display","none");
-   }else{
-    $(this).addClass("currenr_select");
+   page_hash[i]=$(this).attr("href").replace(/#/g, "");// #を消す
+   if(lhash!=page_hash[i]){                            // URLハッシュと等しいページリンクでないもの
+    $(this).removeClass("currenr_select");             // 現在のページでない設定
+    $('#'+page_hash[i]).css("display","none");         // 表示エリアを消す
+   }else{                                              // 現在のページ
+    $(this).addClass("currenr_select");                // 現在のページの設定
    }
    i++;
   });
-  $(this).click(function(){
-   current_page=$(this).attr("href");
-   current_set(current_page);
-   $(this).addClass("currenr_select");
-   for(i=0;i<page_hash.length;i++){
+  $(this).click(function(){                            // クリックされた時
+   current_page=$(this).attr("href");                  // クリックされたページを現在のページにする
+   current_set(current_page);                          // 現在のページのクラス設定を呼び出す
+   for(i=0;i<page_hash.length;i++){                    // すべて非表示
     $('#'+page_hash[i]).css("display","none");
    }
-   $($(this).attr("href")).css("display","block");
+   $($(this).attr("href")).css("display","block");     // クリックされたぺーじを表示
    return false;
   });
-  function current_set(current_pages){
+  function current_set(current_pages){                // 現在のページのクラス設定
    $('.tab a').each(function(){
      if(current_pages==$(this).attr("href")){
         $(this).addClass("currenr_select");
@@ -45,7 +43,6 @@ $.fn.extend({
   }
  }
 });
-
 $(document).ready(function(){
 $('.tab a').tab_controls();
 });
@@ -114,7 +111,7 @@ display:block;
 padding:3px;
 text-decoration:none;
 }
-.tab a.currenr_select{
+.tab a.currenr_select{/* 現在の選択ページ */
 background-color:#ff0000;
 }
 </style>
