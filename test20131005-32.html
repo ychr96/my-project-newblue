@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<META HTTP-EQUIV="Content-Script-Type" CONTENT="text/javascript">
+<META HTTP-EQUIV="Content-Style-Type"  CONTENT="text/css">
+<TITLE>知恵袋 11114445931</TITLE>
+<base href="http://kiyoto777.web.fc2.com/">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script TYPE="text/javascript">
+google.load("feeds", "1");
+$(document).ready(function() {
+google.setOnLoadCallback(initialize);
+});
+// https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://rssblog.ameba.jp/new-blue-777/rss20.xml&num=-1
+function initialize() {
+ var rss_url = 'http://rssblog.ameba.jp/new-blue-777/rss.html'; // RSS 1.0
+ var rss_url = 'http://rssblog.ameba.jp/new-blue-777/rss20.xml';// RSS 2.0
+ var feed = new google.feeds.Feed(rss_url);/*RSS URL*/
+ feed.setNumEntries(15);                   /*表示件数*/
+ feed.load(function(result){
+  if (!result.error) {
+   var container = document.getElementById("feed");
+   for (var i = 0; i < result.feed.entries.length; i++) {
+    var entry = result.feed.entries[i];
+// 日付の編集
+    var hizuke = new Date(entry.publishedDate);
+    var day = hizuke.getDate();
+    if(day<10){ day=" "+day }
+    var mon = hizuke.getMonth() + 1;
+    if(mon<10){ mon=" "+mon }
+    var year = hizuke.getFullYear();
+    var date = year +"\年"+ mon +"\月"+ day +"\日";
+// content の編集
+    var content_display_length = 200; // 表示の長さ(rss 2.0) max=99999ですべて表示
+    var content;
+    if(rss_url.indexOf('rss20.xml')!=-1){ // RSS 2.0
+     if(content_display_length==99999){content_display_length = entry.content.length;}
+     content = entry.content.substring(0,content_display_length);
+    }else{                                // RSS 1.0
+     content = entry.contentSnippet;
+    }
+    if (entry.title.match(/.*PR:.*/mi) == null){
+     container.innerHTML += "<dl><dt>" + date + "</dt><dd><a href='" + entry.link + "'>" + entry.title + "<\/a>" + content + "</dd></dl>";
+    }
+   }
+  }
+ });
+}
+</script>
+<style type="text/css">
+body{
+background-color:#000000;
+color:#ffffff;
+}
+</style>
+</HEAD>
+<BODY>
+<div id="container">
+<div id="header"></div>
+<div id="feed">
+</div>
+</div>
+
+</BODY>
+</HTML>
