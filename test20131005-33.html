@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<META HTTP-EQUIV="Content-Script-Type" CONTENT="text/javascript">
+<META HTTP-EQUIV="Content-Style-Type"  CONTENT="text/css">
+<TITLE>知恵袋 11114430896</TITLE>
+<base href="http://kiyoto777.web.fc2.com/">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript" src="./jQuery.jPlayer.2.4.0/jQuery.jPlayer.2.4.0/jquery.jplayer.min.js" ></script>
+<script type="text/javascript" src="./jQuery.jPlayer.2.4.0/jQuery.jPlayer.2.4.0/add-on/jplayer.playlist.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#jquery_jplayer_1").jPlayer({
+       ready: function () {
+           $(this).jPlayer("setMedia", {
+              m4a: "http://phpjavascriptroom.com/media/audio/Q701.m4a",
+              oga: "http://phpjavascriptroom.com/media/audio/Q701.oga"
+            });  // 自動再生は }).jPlayer("play");
+        },
+        swfPath: "./jQuery.jPlayer.2.4.0/jQuery.jPlayer.2.4.0/Jplayer.swf",
+        supplied: "m4a, oga"
+    });
+});
+</script>
+<style type="text/css">
+body{
+background-color:#000000;
+color:#ffffff;
+}
+#jp_container_1{
+border:1px solid #ffffff;
+padding:10px;
+width:100px;
+margin:auto;
+margin-top:100px;
+}
+#jp_container_1 .jp-play{
+border:1px solid #ffffff;
+padding:10px;
+display:block;
+width:50px;
+margin:auto;
+text-align:center;
+}
+#jp_container_1 a.jp-play{
+text-decoration:none;
+}
+#jp_container_1 .jp-pause{
+border:1px solid #ffffff;
+padding:10px;
+display:block;
+width:50px;
+margin:auto;
+text-align:center;
+}
+#jp_container_1 a.jp-pause{
+text-decoration:none;
+}
+#jp_container_1 .jp-stop{
+border:1px solid #ffffff;
+padding:10px;
+display:block;
+width:50px;
+margin:auto;
+text-align:center;
+}
+#jp_container_1 a.jp-stop{
+text-decoration:none;
+}
+</style>
+</HEAD>
+<BODY>
+<div id="jquery_jplayer_1" class="jp-jplayer"></div>
+<div id="jp_container_1">
+<a href="javascript:void(0);" class="jp-play">play</a><br>
+<a href="javascript:void(0);" class="jp-pause">pause</a><br>
+<a href="javascript:void(0);" class="jp-stop">stop</a><br>
+</div>
+</BODY>
+</HTML>
