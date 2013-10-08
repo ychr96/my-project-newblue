@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HEAD>
+ <TITLE>知恵袋　12114654937　Lightbox2 画像チェンジ</TITLE>
+        <META http-equiv="X-UA-Compatible"     content="IE=8">
+        <META http-equiv="Content-Type"        content="text/html; charset=UTF-8">
+        <META http-equiv="Content-Script-Type" content="text/javascript">
+        <BASE href="http://kiyoto777.web.fc2.com/lightbox/img/demopage/">
+<link href="http://kiyoto777.web.fc2.com/lightbox/css/lightbox.css" rel="stylesheet" />
+<style type="text/css">
+body{background-color:#000000;color:#ffffff;font-size:32px;}
+
+#contents5{/* 表示エリア */
+width:300px;
+height:245px;
+margin:auto;
+text-align:center;
+overflow:hidden;
+position:relative;
+}
+#contents5 img{/* 表示エリア 画像*/
+position:absolute;
+top:0;
+left:0;
+z-index:8;
+}
+#contents5 img.active{/* 表示エリア 前面表示画像*/
+z-index:10;
+}
+
+
+.filmarea{/* サムネイル 全体 */
+width:350px;
+margin:auto;
+text-align:center;
+}
+.filmarea li{/* サムネイル */
+float:left;
+list-style:none;
+}
+</style>
+</head>
+<body>
+
+<!--onClick後表示エリア-->
+<p>
+<div id="contents5">
+<a href="image-1.jpg" rel="lightbox"><img src="image-1.jpg" width="300"></a>
+<a href="image-2.jpg" rel="lightbox"><img src="image-2.jpg" width="300"></a>
+<a href="image-3.jpg" rel="lightbox"><img src="image-3.jpg" width="300"></a>
+<a href="image-4.jpg" rel="lightbox"><img src="image-4.jpg" width="300"></a>
+<a href="image-5.jpg" rel="lightbox"><img src="image-5.jpg" width="300"></a>
+<a href="image-6.jpg" rel="lightbox"><img src="image-6.jpg" width="300"></a>
+</div>
+</p>
+
+<!--並列サムネエリア-->
+<p>
+<ul class="filmarea">
+<li><img src="image-1.jpg" width="50" height="50" onClick="Imgchg(this)"></li>
+<li><img src="image-2.jpg" width="50" height="50" onClick="Imgchg(this)"></li>
+<li><img src="image-3.jpg" width="50" height="50" onClick="Imgchg(this)"></li>
+<li><img src="image-4.jpg" width="50" height="50" onClick="Imgchg(this)"></li>
+<li><img src="image-5.jpg" width="50" height="50" onClick="Imgchg(this)"></li>
+<li><img src="image-6.jpg" width="50" height="50" onClick="Imgchg(this)"></li>
+</ul>
+</p>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript" src="http://kiyoto777.web.fc2.com/lightbox/js/lightbox.js"></script>
+<script type="text/javascript">
+function Imgchg(thisx){
+ var iamges = thisx.src;
+ $("#contents5 a").each(function(){
+  if(iamges.indexOf($(this).find("img").attr("src"))!=-1){
+   $(this).find("img").addClass("active");
+  }else{
+   $(this).find("img").removeClass("active");
+  }
+ });
+}
+</script>
+</BODY>
+</HTML>
+
