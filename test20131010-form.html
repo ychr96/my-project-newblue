@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HEAD>
+ <TITLE>知恵袋　q13114696498　文字入力やプルダウンを選択すると下部のテキストエリアに反映されコピーできるようにしたい</TITLE>
+        <META http-equiv="X-UA-Compatible"     content="IE=8">
+        <META http-equiv="Content-Type"        content="text/html; charset=UTF-8">
+        <META http-equiv="Content-Script-Type" content="text/javascript">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://kiyoto777.web.fc2.com/test/dateformat.js"></script>
+<script type="text/javascript">
+// Textbox Function
+function Tbox_func(Form_names,names){
+ var Tbox_obj    = eval('document.'+Form_names+'.'+names);
+ var Tbox_value  = Tbox_obj.value;
+return {Tbox_value:Tbox_value};
+}
+// SelectBox Function
+function Sbox_func(Form_names,names){
+ var Sbox_obj   = eval('document.'+Form_names+'.'+names);
+ var Sbox_index = Sbox_obj.selectedIndex;
+ var Sbox_value = Sbox_obj[Sbox_index].value;
+ var Sbox_text  = Sbox_obj[Sbox_index].text;
+ return {Sbox_value:Sbox_value,Sbox_text:Sbox_text};
+}
+function desired_date_input(desired_date_in){  // 処理希望日入力チェック
+  var dateFormat = new DateFormat("MM/dd");
+  if(!desired_date_in.match(/^\d{4}\/\d{2}\/\d{2}$/)){
+   alert("日付入力エラー " + desired_date_in);
+   return false;
+  } 
+  var dateStr = dateFormat.format(new Date(desired_date_in));
+  if(dateStr!=desired_date_in.substring(desired_date_in.length-5,desired_date_in.length)){
+   alert("日付入力エラー " + desired_date_in);
+   return false;
+  } 
+  document.form1.desired1_date_d.value="処理希望日"+dateStr;
+  $(".desired2_date").text(dateStr);
+}
+function Phone_number_check(Phone_number){   // 電話番号チェック
+ Phone1 = Phone_number.match(/^[0-9-]{6,9}$|^[0-9-]{12}$/);
+ Phone2 = Phone_number.match(/^\d{1,4}-\d{4}$|^\d{2,5}-\d{1,4}-\d{4}$/);
+ if(!Phone1 && !Phone2){
+  alert("電話番号入力エラー " + Phone_number);
+  return false;
+ }
+}
+function text_display_func(){                 // テキストエリアセット
+ var crlf = "\n";
+ var text_display_area = 
+  "受付日："+$(".Reception_date").text()+crlf+
+  "処理希望日："+Tbox_func("form1","desired_date_in").Tbox_value+crlf+
+  "理由："+Sbox_func("form1","Reason").Sbox_text+crlf+
+  "電話番号："+Tbox_func("form1","Phone_number").Tbox_value+crlf+
+  "住所："+Sbox_func("form1","Address").Sbox_text+crlf+
+  "担当："+Tbox_func("form1","Charge").Tbox_value+crlf;
+ $("#text_display").text(text_display_area);
+}
+function text_display_reset(){               // リセット
+ $("#text_display").text("");
+ Reception_date_set();                       // 受付日
+}
+function Reception_date_set(){               // 受付日セット
+ var dateFormat = new DateFormat("MM/dd");
+ var dateStr = dateFormat.format(new Date());
+ $(".Reception_date").text(dateStr);
+}
+
+$(document).ready(function(){                // 初期処理
+Reception_date_set();                        // 受付日
+});
+
+
+</script>
+<style type="text/css">
+body{background-color:#000000;color:#ffffff;font-size:12px;}
+body{line-height:20px;}
+textarea{
+height:150px;
+width:200px;
+overflow:auto;
+}
+#desired1_date_d{
+background-color:#000000;
+color:#ffffff;
+border:none;
+}
+</style>
+</head>
+<body>
+<form name="form1">
+処理希望日入力　<input type="text" name="desired_date_in" value="" onBlur="desired_date_input(this.value)"><br>
+件名：<input type="text" name="desired1_date_d" value="処理希望日" readonly id="desired1_date_d"> 
+<input type="button" value="件名をコピー" onClick="window.clipboardData.setData('text',form1.desired1_date_d.value);"><br>
+受付日：　　<span class="Reception_date">　　</span><br>
+処理希望日：<span class="desired2_date"></span><br>
+理由
+<select name="Reason">
+<option value="Reason1">理由①</option>
+<option value="Reason2">理由②</option>
+<option value="Reason3">理由③</option>
+</select><br>
+電話番号<input type="text" name="Phone_number" value="" onBlur="Phone_number_check(this.value)"><br>
+住所
+<select name="Address">
+<option value="1">北海道</option>
+<option value="2">青森</option>
+</select><br>
+担当<input type="text" name="Charge" value=""><br>
+<br>
+<input type="button" value="表示" onClick="text_display_func()">
+<br>
+<textarea id="text_display" readonly name="text_display" onmouseover="this.select();"></textarea>
+<br>
+<br>
+<input type="button" value="文字列をコピー" onclick="window.clipboardData.setData('text',form1.text_display.value);">
+<input type="reset" value="リセット" onClick="text_display_reset()">
+</form>
+</body>
+</HTML>
+
