@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HEAD>
+ <TITLE>知恵袋　q14114723819　Dialog(jquery-ui-1.10.3.custom.min.js)</TITLE>
+        <META http-equiv="X-UA-Compatible"     content="IE=8">
+        <META http-equiv="Content-Type"        content="text/html; charset=UTF-8">
+        <META http-equiv="Content-Script-Type" content="text/javascript">
+        <BASE href="http://kiyoto777.web.fc2.com">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://kiyoto777.web.fc2.com/jquery-ui-1.10.3.custom/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<link href="http://kiyoto777.web.fc2.com/jquery-ui-1.10.3.custom/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
+<script type="text/javascript">
+$(document).ready(function(){
+ var button_len = $('button').length;    // ボタンの数
+ var j;                                  // j=i+1
+ for (i=0; i < button_len; i++){         // ボタンの数を繰り返す
+   j = i+1;                              // ex i=0→j=i+1→1
+   $('.dialog_' + j).dialog({            // Dialog Set
+    autoOpen: false,
+    modal: false,
+    width: "auto",
+    height: "auto"
+   });
+   $('#opener_' + j).click(function () { // ボタンをクリック時
+    $('.'+$(this).val()).dialog('open'); // ボタンに設定されている valueのＩＤをオープンする
+   });
+ }
+});
+</script>
+<style type="text/css">
+body{background-color:#000000;color:#ffffff;font-size:32px;}
+</style>
+</head>
+<body>
+ <!-- 1 Thumbnail Image -->
+<p>Thumnail_1 Title</p>
+<img class="thumbnail_1" src="./test/gaz0.gif" alt="" /><br />
+
+<!-- enlarge thumbnail img -->
+<button id="opener_1" value="dialog_1">Enlarge Image</button>
+<div class="dialog_1" title="">Enlarge
+<img class="large_1" src="./test/gaz1.gif" />
+</div>
+
+<!-- show text -->
+<button id="opener_2" value="dialog_2">Text</button>
+<div class="dialog_2" title="Dialog Title">Text
+<p class="text_1">AAAAAAAAAAAAAAAAAAAAAA</p>
+</div>
+
+<!-- display PDF file -->
+<button id="opener_3" value="dialog_3">Enlarge</button>
+<div class="dialog_3" title="PDF file">PDF
+<iframe class="pdf_1 src="./AAAA.pdf"> </iframe>
+</div>
+</body>
+</HTML>
+
