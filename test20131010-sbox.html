@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HEAD>
+ <TITLE>知恵袋　q14114709134　【jQuery】複数のプルダウンメニューのうちいずれかによりラジオボタンを制御する方法</TITLE>
+        <META http-equiv="X-UA-Compatible"     content="IE=8">
+        <META http-equiv="Content-Type"        content="text/html; charset=UTF-8">
+        <META http-equiv="Content-Script-Type" content="text/javascript">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ $('.likes').change (function() {                   // likes のクラスをループ
+  var this_likes = $(this);                         // likes のクラスの this 保持
+  $('option:selected',this_likes).each(function() { // likes のクラスの中の option:selected
+   if ($(this).val()=="apple" ) {                   // option の value を判別
+    $('.ringo',this_likes).removeAttr('disabled', 'disabled' ); // 該当するlikesクラスの ringo を選択不可
+   }else{
+    $('.ringo',this_likes).attr('disabled', 'disabled');        // 該当するlikesクラスの ringo を選択可
+   }
+  });
+ }).change();
+});
+</script>
+<style type="text/css">
+body{background-color:#000000;color:#ffffff;font-size:32px;}
+</style>
+</head>
+<body>
+<div class="likes">
+１番目 
+<select name="a1st" size="1">
+<option value="">果物を選択</option>
+<option value="strbry">いちご</option>
+<option value="apple" >りんご</option>
+<option value="orange">みかん</option>
+</select><br>
+<input type="radio" name="kindapl1" value="fuji"  class="ringo" id="kindapl_11" /><label for="kindapl_11">ふじ</label>
+<input type="radio" name="kindapl1" value="kogyk" class="ringo" id="kindapl_12" /><label for="kindapl_12">紅玉</label>
+</div>
+<hr>
+<div class="likes">
+２番目 
+<select name="a2nd" size="1">
+<option value="">果物を選択</option>
+<option value="strbry">いちご</option>
+<option value="apple" >りんご</option>
+<option value="orange">みかん</option>
+</select><br>
+<input type="radio" name="kindapl2" value="fuji"  class="ringo" id="kindapl_21" /><label for="kindapl_21">ふじ</label>
+<input type="radio" name="kindapl2" value="kogyk" class="ringo" id="kindapl_22" /><label for="kindapl_22">紅玉</label>
+</div>
+</body>
+</HTML>
+
