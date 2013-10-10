@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HEAD>
+ <TITLE>知恵袋　q14114745404　 画像チェンジ</TITLE>
+        <META http-equiv="X-UA-Compatible"     content="IE=8">
+        <META http-equiv="Content-Type"        content="text/html; charset=UTF-8">
+        <META http-equiv="Content-Script-Type" content="text/javascript">
+        <BASE href="http://kiyoto777.web.fc2.com/lightbox/img/demopage/">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ $("#contentsArea img").click(function(){                  // 画像クリックしたら
+   $(this).removeClass("active");                          // クリックした画像を 非activeにする
+   if(typeof $(this).next().attr("src")=="undefined"){     // 一番最後の画像の次はないので、最初に戻す
+    $("#contentsArea img:first").addClass("active");       // 最初の画像を activeにする
+   }else{
+    $(this).next().addClass("active");                     // 次の画像を activeにする
+   }
+ });
+});
+</script>
+<style type="text/css">
+body{background-color:#000000;color:#ffffff;font-size:32px;}
+
+#contentsArea{/* 表示エリア */
+width:300px;
+height:245px;
+margin:auto;
+text-align:center;
+overflow:hidden;
+position:relative;
+}
+#contentsArea img{/* 表示エリア 画像*/
+position:absolute;
+top:0;
+left:0;
+z-index:8;  /* ここで重なりを調整 */
+}
+#contentsArea img.active{/* 表示エリア 前面表示画像*/
+z-index:10;
+}
+#contentsArea img:hover{ /* カーソル */
+cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<p>
+<div id="contentsArea">
+<img src="image-1.jpg" width="300" class="active">
+<img src="image-2.jpg" width="300">
+<img src="image-3.jpg" width="300">
+<img src="image-4.jpg" width="300">
+<img src="image-5.jpg" width="300">
+<img src="image-6.jpg" width="300">
+</div>
+</p>
+</BODY>
+</HTML>
+
