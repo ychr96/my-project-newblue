@@ -6,8 +6,8 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script type="text/javascript">
-function control_images(selectors,controls){         // ○　画像制御関数
- var fadeSpeed = 1000,active_img,controls_img;
+function control_images(selectors,controls,fadeSpeed){   // ○　画像制御関数
+ var  active_img,controls_img;
  active_img=$(selectors + " img.active");            // 現在表示の画像(★)
  switch (controls){                                  // 指示された画像のオブジェクト設定
   case "next":                                       // next
@@ -92,14 +92,13 @@ display:block;
   </span>
   <div id="thumbnail" align="center">
    <table id="thumbs_b">
-    <TD class="td3"><input type="radio" name="select" id="last"  onClick="control_images('#layout_b','last')"><label for="last">最後尾へ</label></TD>
-    <TD class="td3"><input type="radio" name="select" id="next"  onClick="control_images('#layout_b','next')"><label for="next">一つ後ろへ</label></TD>
-    <TD class="td3"><input type="radio" name="select" id="prev"  onClick="control_images('#layout_b','prev')"><label for="prev">一つ前へ</label></TD>
-    <TD class="td3"><input type="radio" name="select" id="first" onClick="control_images('#layout_b','first')"><label for="first">最前列へ</label></TD>
+    <TD class="td3"><input type="radio" name="select" id="last"  onClick="control_images('#layout_b','last',1000)"><label for="last">最後尾へ</label></TD>
+    <TD class="td3"><input type="radio" name="select" id="next"  onClick="control_images('#layout_b','next',1000)"><label for="next">一つ後ろへ</label></TD>
+    <TD class="td3"><input type="radio" name="select" id="prev"  onClick="control_images('#layout_b','prev',1000)"><label for="prev">一つ前へ</label></TD>
+    <TD class="td3"><input type="radio" name="select" id="first" onClick="control_images('#layout_b','first',1000)"><label for="first">最前列へ</label></TD>
    </table>
   </div>
  </div>
 </div>
 </body>
 </HTML>
-
