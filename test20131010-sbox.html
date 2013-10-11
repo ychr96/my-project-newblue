@@ -7,15 +7,18 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(document).ready(function(){
- $('.likes').change (function() {                   // likes のクラスをループ
-  var this_likes = $(this);                         // likes のクラスの this 保持
-  $('option:selected',this_likes).each(function() { // likes のクラスの中の option:selected
+ $('.likes select').change (function() {            // likes の select（複数）がどれか一つでも変更されたら
+  var ringo_sw="0";                                 // ringo_sw 1←appleを選択 0←appleを非選択(初期値)
+  $(".likes select").each(function() {              // likes のクラスの中の全箇所を再チェック
    if ($(this).val()=="apple" ) {                   // option の value を判別
-    $('.ringo',this_likes).removeAttr('disabled', 'disabled' ); // 該当するlikesクラスの ringo を選択不可
-   }else{
-    $('.ringo',this_likes).attr('disabled', 'disabled');        // 該当するlikesクラスの ringo を選択可
+    ringo_sw="1";                                   // apple(1)
    }
   });
+  if(ringo_sw=="1"){                                // appleを一つでも選択しているか？
+    $('.ringo').removeAttr('disabled');             // 該当するlikesクラスの ringo を選択可
+  }else{
+    $('.ringo').attr('disabled', 'disabled');       // 該当するlikesクラスの ringo を選択不可
+  }
  }).change();
 });
 </script>
@@ -32,10 +35,7 @@ body{background-color:#000000;color:#ffffff;font-size:32px;}
 <option value="apple" >りんご</option>
 <option value="orange">みかん</option>
 </select><br>
-<input type="radio" name="kindapl1" value="fuji"  class="ringo" id="kindapl_11" /><label for="kindapl_11">ふじ</label>
-<input type="radio" name="kindapl1" value="kogyk" class="ringo" id="kindapl_12" /><label for="kindapl_12">紅玉</label>
 </div>
-<hr>
 <div class="likes">
 ２番目 
 <select name="a2nd" size="1">
@@ -44,9 +44,9 @@ body{background-color:#000000;color:#ffffff;font-size:32px;}
 <option value="apple" >りんご</option>
 <option value="orange">みかん</option>
 </select><br>
-<input type="radio" name="kindapl2" value="fuji"  class="ringo" id="kindapl_21" /><label for="kindapl_21">ふじ</label>
-<input type="radio" name="kindapl2" value="kogyk" class="ringo" id="kindapl_22" /><label for="kindapl_22">紅玉</label>
 </div>
+<hr>
+<input type="radio" name="kindapl" value="fuji"  class="ringo" id="kindapl_1" disabled/><label  for="kindapl_1">ふじ</label>
+<input type="radio" name="kindapl" value="kogyk" class="ringo" id="kindapl_2" disabled /><label for="kindapl_2">紅玉</label>
 </body>
 </HTML>
-
