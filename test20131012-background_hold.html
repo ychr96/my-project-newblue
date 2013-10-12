@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>知恵袋 q14114818904  Javascriptで背景を変更したら、ページを再読込してもそのままになるようにしたい </TITLE>
+<base href="http://kiyoto777.web.fc2.com/test/" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript" src="http://kiyoto777.web.fc2.com/test/jquery.cookie.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+var cookie_key="bg_hold";                            // cookieの名前
+ if($.cookie(cookie_key)){                           // cookie が存在する場合
+  var images_value=$.cookie(cookie_key);             // cookie の値を得る
+  $("select#bgselect").val([images_value]);          // セレクトボックスへセット
+  document.body.style.backgroundImage = "url(" + images_value + ")";// 背景画像のＣＳＳをセット
+ }
+});
+function chBgImg(opt) {                             // セレクトボックスの選択が変わった場合
+ var cookie_key="bg_hold";                          // cookie の名前
+ if($.cookie(cookie_key)){                          // cookie が存在する場合
+  $.cookie(cookie_key,null);                        // cookie delete
+ }
+ $.cookie(cookie_key,opt.options[opt.selectedIndex].value,{expires:10});// // cookieを追加
+ document.body.style.backgroundImage = "url(" + opt.options[opt.selectedIndex].value + ")";// ＣＳＳセット
+}
+</script>
+<style type="text/css">
+body{
+background-image:url(gaz1.gif);
+background-repeat:repeat;
+}
+#fc2_qr_code_header{display:none;}
+</style>
+</HEAD>
+<BODY>
+<FORM>
+<SELECT onChange="chBgImg(this)" id="bgselect">
+<OPTION value="gaz1.gif" selected>画像１</OPTION>
+<OPTION value="gaz2.gif">画像２</OPTION>
+<OPTION value="gaz3.gif">画像３</OPTION>
+<OPTION value="gaz4.gif">画像４</OPTION>
+</SELECT>
+</FORM>
+</BODY>
+</HTML>
