@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>知恵袋 q12114911402   javascriptでcookieに記憶と呼び出しをさせたい </TITLE>
+<base href="http://kiyoto777.web.fc2.com/test/" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript" src="http://kiyoto777.web.fc2.com/test/jquery.cookie.js"></script>
+<script type="text/javascript">
+function show_block(){
+ if(document.getElementById("box").style.display == "block"){
+  document.getElementById("box").style.display   =  "none";
+ }else{
+  document.getElementById("box").style.display   =  "block";
+ }
+}
+$(document).ready(function(){
+var cookie_key="box_hold";                           // cookieの名前
+ if($.cookie(cookie_key)){                           // cookie が存在する場合
+  var display_value = $.cookie(cookie_key);          // cookie の値を得る
+  $("#box").css("display",display_value);            // ボックスへＣＳＳセット
+ }
+});
+function save() {                                   // セレクトボックスの選択が変わった場合
+ var cookie_key="box_hold";                         // cookie の名前
+ if($.cookie(cookie_key)){                          // cookie が存在する場合
+  $.cookie(cookie_key,null);                        // cookie delete
+ }
+ var display_value = $("#box").css("display");      // ボックスのＣＳＳを求める
+ $.cookie(cookie_key,display_value,{expires:10});   // cookieを追加
+}
+</script>
+<style type="text/css">
+body{
+}
+#fc2_qr_code_header{display:none;}
+</style>
+</HEAD>
+<body>
+<p><a href="javascript:void(0)" onclick="show_block();save();"	>非表示/表示</a></p>
+<div id="box" style="display:block;" >テスト</div>
+</body>
+</HTML>
