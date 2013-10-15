@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HEAD>
+ <TITLE>知恵袋　q13114977498　スワップイメージのフェードインのやり方などについて</TITLE>
+        <META http-equiv="X-UA-Compatible"     content="IE=8">
+        <META http-equiv="Content-Type"        content="text/html; charset=UTF-8">
+        <META http-equiv="Content-Script-Type" content="text/javascript">
+        <BASE href=" http://kiyoto777.web.fc2.com/test/">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" type="text/javascript" ></script>
+<script type="text/javascript">
+// スライドショー部分の関数（未使用）
+function control_images(selectors,controls,fadeSpeed){
+ var  active_img,controls_img;
+ active_img=$(selectors + " img.active");            // 現在表示の画像(★)
+ switch (controls){                                  // 指示された画像のオブジェクト設定
+  case "next":                                       // next
+    controls_img = active_img.next();
+    break;
+  case "prev":                                       // prev
+    controls_img = active_img.prev();
+    break;
+  case "first":                                      // first
+    controls_img = $(selectors + " img:first");
+    break;
+  case "last":                                       // last
+    controls_img = $(selectors + " img:last");
+    break;
+  default:                                           // その他指定なし
+    controls_img = active_img.next();
+    break;
+ }
+ if(typeof controls_img.attr("src")=="undefined"){   // next prevが見つからない場合は？
+  if(controls=="next"){                              // 現在表示が最後のケース
+    controls_img=$(selectors + " img:first");
+  }
+  if(controls=="prev"){                              // 現在の表示が最初のケース
+    controls_img=$(selectors + " img:last");
+  }
+ }
+ active_img.addClass("last-active");                 // 現在表示の画像(★)を最後の画像にする。
+ controls_img.css({opacity: 0.0}).addClass('active') // 指示された表示の画像(■)を現在の一番上の画像とする。
+   .animate({opacity: 1.0}, fadeSpeed,               // 指示された画像(■)を徐々に表示させる。
+    function() {
+     active_img.removeClass('active last-active');   // 完了したら現在表示の画像(★)を通常画像にする。
+    });
+}
+// サムネイルのPrev Next クリック関数
+// Thumbnail_control(セレクター名,移動px)
+function Thumbnail_control(selectors,positions){
+ var current_position,next_position,Thumbnail_width,Thumbnail_img_width,max_position,Thumbnail_count;
+ current_position     = $(selectors+' ul').css("left");  // 現在のleftの位置
+ current_position     = parseInt(current_position.replace(/px/g,""));
+ next_position        = current_position+positions;      // 次のleftの位置
+ Thumbnail_width      = $(selectors).css("width");       // サムネイルの全体幅
+ Thumbnail_width      = parseInt(Thumbnail_width.replace(/px/g,""));
+ Thumbnail_img_width  = $(selectors+' img').css("width");// サムネイル画像の幅
+ Thumbnail_img_width  = parseInt(Thumbnail_img_width.replace(/px/g,""));
+ Thumbnail_count      = $(selectors+' img').length;      // サムネイル画像の数
+ // 最大ポジション
+ max_position         = (Thumbnail_img_width*Thumbnail_count-Thumbnail_width+Thumbnail_img_width)*-1;
+ // Prev Next　をクリックされても限界で停止する
+ if(max_position!=next_position && next_position!=Thumbnail_img_width){
+  $(selectors+" ul").css("left",next_position);          // サムネイルを横に移動
+ }
+}
+// サムネイルにカーソルが乗せられた時の関数
+// _HpbImgSwap(セレクター名,this,フェードスピード(ミリ秒))
+function _HpbImgSwap(selectors,thisx,fadeSpeed){
+ var active_img,controls_img;
+ var select_img       = thisx.src.replace(/\.\//g,"");// カーソルが乗せられた画像のSRC
+ $(selectors+' img').each(function(){                 // カーソルが乗せられた画像のSRCと等しいスライドショー
+  if(select_img.indexOf($(this).attr("src"))!=-1){    // 画像と等しい場合は、そのスライドショーの画像の
+    controls_img      = $(this);                      // 指示された画像(■)のオブジェクト
+  }
+ });
+ active_img=$(selectors + " img.active");             // 現在の表示画像(★)
+ active_img.addClass("last-active");                  // 現在の表示画像(★)を最後の画像にする。
+ controls_img.css({opacity: 0.0}).addClass('active')  // 指示された表示の画像(■)を現在の一番上の画像とする。
+   .stop().animate({opacity: 1.0}, fadeSpeed,         // 指示された画像(■)を徐々に表示させる。
+    function() {
+     active_img.removeClass('active last-active');    // 完了したら現在表示の画像(★)を通常画像にする。
+    });
+}
+</script>
+<style type="text/css">
+.wrap                      {/* 全体の大きさ Prev Nextを含める */
+ width:400px;               /* 全体の幅     */
+ height:300px;              /* 全体の高さ   */
+ margin:auto;
+}
+.swap_wrap                 {/* スライドショー表示部分 */
+ position:relative;         /* 相対配置       */
+ width:200px;               /* 表示部分の幅   */
+ height:200px;              /* 表示部分の高さ */
+ margin:auto;
+ overflow:hidden;
+}
+.swap_wrap img             {/* 通常画像は一番下（順番待画像) */
+ position:absolute;         /* 絶対配置 */
+ top:0;                     /* 位置     */
+ left:0;                    /* 位置     */
+ z-index:8;                 /* 重なりの優先順位 */
+}
+.swap_wrap img.active      {/* フェードしてopacity 0→1.0の画像は一番上 */
+ z-index:10;                /* 重なりの優先順位 */
+}
+.swap_wrap img.last-active {/* 現在表示している画像は真ん中(active last-active) */
+ z-index:9;                 /* 重なりの優先順位 */
+}
+.swap                      {/* サムネイル全体 */
+ margin:auto;
+ width:250px;               /* サムネイルの表示部分の幅   */
+ height:50px;               /* サムネイルの表示部分の高さ */
+ overflow:hidden;
+ position:relative;         /* 相対配置       */
+ }
+.swap_ul li                {/* サムネイルの画像 */
+ float:left;                /* 横に並べる       */
+ list-style:none;           /* リストなし       */
+}
+.swap_ul                   {/* サムネイルの画像 */
+ margin-top:0px;
+ margin-left:auto;
+ margin-right:auto;
+ width:400px;               /* サムネイル画像の数×サムネイル画像の幅 */
+ height:50px;               /* サムネイル画像の高さ */
+ padding:0px;               /* 内側余白 */
+ position:absolute;         /* 絶対配置 */
+ top:0px;                   /* 位置     */
+ left:0px;                  /* 位置     */
+}
+.swap_ul li:hover          {/* サムネイルの画像にカーソルを乗せた時のポインター */
+ cursor:pointer;            /* 指さしポインター */
+}
+.swap_prev                 {/* サムネイル Prev */
+ position:relative;
+ top:-30px;
+ left:20px;
+ width:50px;
+ height:50px;
+ display:block;
+}
+.swap_next                 {/* サムネイル Next */
+ position:relative;
+ top:-80px;
+ left:340px;
+ width:50px;
+ height:50px;
+ display:block;
+}
+.swap_prev:hover,
+.swap_next:hover           {/* サムネイル Prev Next */
+ cursor:pointer;            /* 指さしポインター     */
+}
+
+/* 位置制御など */
+#swap      {margin:auto;}
+body       {background-color:#000000;color:#ffffff;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="swap_wrap">
+<img src="gaz1.gif" class="active" width="200">
+<img src="gaz2.gif" width="200">
+<img src="gaz3.gif" width="200">
+<img src="gaz4.gif" width="200">
+<img src="gaz5.gif" width="200">
+<img src="gaz6.gif" width="200">
+<img src="gaz7.gif" width="200">
+<img src="gaz8.gif" width="200">
+</div>
+<br clear="all">
+<div class="swap">
+<ul class="swap_ul">
+<li><img src="gaz1.gif" width="50" height="50" onmouseover="_HpbImgSwap('.swap_wrap', this,1000);"></li>
+<li><img src="gaz2.gif" width="50" height="50" onmouseover="_HpbImgSwap('.swap_wrap', this,1000);"></li>
+<li><img src="gaz3.gif" width="50" height="50" onmouseover="_HpbImgSwap('.swap_wrap', this,1000);"></li>
+<li><img src="gaz4.gif" width="50" height="50" onmouseover="_HpbImgSwap('.swap_wrap', this,1000);"></li>
+<li><img src="gaz5.gif" width="50" height="50" onmouseover="_HpbImgSwap('.swap_wrap', this,1000);"></li>
+<li><img src="gaz6.gif" width="50" height="50" onmouseover="_HpbImgSwap('.swap_wrap', this,1000);"></li>
+<li><img src="gaz7.gif" width="50" height="50" onmouseover="_HpbImgSwap('.swap_wrap', this,1000);"></li>
+<li><img src="gaz8.gif" width="50" height="50" onmouseover="_HpbImgSwap('.swap_wrap', this,1000);"></li>
+</ul>
+</div>
+<span class="swap_prev" onclick="Thumbnail_control('.swap',50)">Prev</span>
+<span class="swap_next" onclick="Thumbnail_control('.swap',-50)">Next</span>
+</div>
+</BODY>
+</HTML>
+
