@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>知恵袋 q10115024810</TITLE>
+<base href="http://kiyoto777.web.fc2.com/test/" />
+<script type="text/javascript">
+// クッキーの読み込み
+function cookie_read(cookie_keys){
+ var cookie_status = 9;                                    // return値 9(9←cookieなし 0←cookieあり)
+ var cookie_value  = "";                                   // return値 (初期値)
+ var cookieName    = cookie_keys + '=';                    // クッキー名のセット
+ var cookies       = document.cookie;                      // クッキーの読み込み
+ var positions     = cookies.indexOf(cookieName);          // クッキーが存在のチェック
+ if(positions!=-1){                                        // クッキーが存在する場合
+  var start_pos    = positions + cookieName.length;        // start position
+  var end_pos      = cookies.indexOf( ';', start_pos );    // end   position
+  if( end_pos      == -1 ){
+   end_pos         = cookies.length;
+  }
+  cookie_value     = decodeURIComponent(cookies.substring(start_pos,end_pos));// 値を得る
+  cookie_status    = 0;                                    // return値 0
+ }
+ return {cookie_status:cookie_status,cookie_value:cookie_value}; // return値　ステータス,値
+}
+// クッキーの書き込み＆更新　cookie_expiresは日数
+function cookie_write(cookie_keys,cookie_values,cookie_expires){
+ var expire_date = new Date();
+ // 日数×２４時間×６０分×６０秒×１０００ミリ秒
+ expire_date.setTime(expire_date.getTime() + cookie_expires*24*60*60*1000);
+ document.cookie = cookie_keys+'='+encodeURIComponent(cookie_values)+'; expires='+expire_date.toGMTString();
+}
+// クッキーの削除　現在の日時より１秒遅い日時を指定して削除する
+function cookie_delete(cookie_keys){
+ var expire_date = new Date();
+ expire_date.setTime(expire_date.getTime() - 1000);
+ document.cookie = cookie_keys + "=; expires=" + expire_date.toGMTString();
+}
+// クッキー処理
+function cookie_init(cookie_keys){
+ var cookie_value    = 0;                                // クッキーの値(初期値)
+ var read_cookie_obj = cookie_read(cookie_keys);         // クッキーを読む
+ if(read_cookie_obj.cookie_status==0){                   // クッキーが存在する？
+  var cookie_value   = parseInt(read_cookie_obj.cookie_value) + 1;// 回数を＋１する。
+  cookie_write("KAISU",cookie_value,30);                 // クッキーを更新
+ }else{
+  cookie_value       = 1;                                // １回目の訪問時（クッキーが存在しない場合）
+  cookie_write("KAISU",cookie_value,30);                 // クッキーを追加 30は有効期間30日の意味
+ }
+ alert(cookie_value+"回目の訪問です。");                 // 訪問回数をアラートする
+}
+window.onload = function(){cookie_init("KAISU")}
+</script>
+<style type="text/css">
+body{
+}
+#fc2_qr_code_header{display:none;}
+</style>
+</HEAD>
+<body>
+</body>
+</HTML>
