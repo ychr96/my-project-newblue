@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HEAD>
+<TITLE>知恵袋　q14115040219　ファイルリード</TITLE>
+        <META http-equiv="X-UA-Compatible"     content="IE=8">
+        <META http-equiv="Content-Type"        content="text/html; charset=UTF-8">
+        <META http-equiv="Content-Script-Type" content="text/javascript">
+<script type="text/javascript">
+function dochange(event) {
+    var file = event.target.files[0];
+    if (file) {
+        readfile(file);
+    }
+}
+function readfile(file) {
+    var reader = new FileReader();
+    reader.readAsText(file,"utf-8");
+    reader.onload = loaded;
+    reader.onerror = error;
+    getfileinfo(file)
+}
+function getfileinfo(file){
+    var finfo_str = "<br>★★★ ファイル情報 ★★★<br>";
+    finfo_str += "名前："         + file.name             + "<br>";
+    finfo_str += "サイズ："       + file.size             + "<br>";
+    finfo_str += "タイプ："       + file.type             + "<br>";
+    finfo_str += "最終修正日時：" + file.lastModifiedDate + "<br>";
+    document.getElementById('file_info').innerHTML = finfo_str;
+}
+
+function loaded(event) {
+    var str = event.target.result;
+    var fdata_str = "<br>★★★ ファイル内容 ★★★<br>";
+    fdata_str += str;
+    document.getElementById('file_data').innerHTML = fdata_str;
+    eval(str);
+    document.getElementById('sample01').innerHTML = sample01;
+    alert("sample01="+sample01);
+}
+
+function error() {
+   alert("ファイルが読めません！");
+}
+$(function(){
+ // ブラウザが対応しているかをチェック
+ if (window.File && window.FileReader && window.FileList && window.Blob) {
+ }else{
+  alert('The File APIs are not fully supported in this browser.');
+ }
+});
+</script>
+<style type="text/css">
+body       {background-color:#000000;color:#ffffff;}
+</style>
+</head>
+<body>
+<input type="file" id="file1" onchange="dochange(event);">
+<div id="file_info"></div>
+<div id="file_data"></div>
+<br>
+sample01の変数の値
+<div id="sample01"></div>
+</BODY>
+</HTML>
+
