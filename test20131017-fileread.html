@@ -40,13 +40,11 @@ function loaded(event) {
 function error() {
    alert("ファイルが読めません！");
 }
-$(function(){
  // ブラウザが対応しているかをチェック
  if (window.File && window.FileReader && window.FileList && window.Blob) {
  }else{
   alert('The File APIs are not fully supported in this browser.');
  }
-});
 </script>
 <style type="text/css">
 body       {background-color:#000000;color:#ffffff;}
