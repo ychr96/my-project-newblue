@@ -1,4 +1,4 @@
-★　フリープラグインへ追加する。
+★　フリープラグインへ追加する。YouTube JavaScript Player API
 
 
 
@@ -7,47 +7,51 @@
 <script src="http://www.google.com/jsapi"></script>
 <script type="text/javascript">google.load("swfobject", "2.1");</script>
 <script type="text/javascript">
-var VideoID_list = ["iZdyuIab9v8","BXsusJ787sU","-uGCWT2wvUI",]; // ① 動画のビデオＩＤ指定
-</script>
-<script type="text/javascript">
-var VideoID=VideoID_list;
-var index001 = 0;                                            // ● 開始ビデオ指定(順次再生の場合)
-var random_sw = "ON";                                        // ② 再生タイプ "ON" ・・・ランダム再生 "OFF" ・・・ 順次再生
-var params = { allowScriptAccess: "always" };
-var atts = { id: "myytplayer" };
+//  ★　動画のビデオＩＤ指定など各種設定　開始
+var VideoID      = ["XHdcW2axwMk","MBuJ5R2KBKo","WIdWXhV33vs"];
+var VideoVolumes = [20,50,100];                             // 音量の指定
+var VideoPos     = [0,0,0];                                 // 再生位置指定
+var index001     = 0;                                       // 開始ビデオ指定(順次再生の場合)
+var autoplaysw   = 1;                                       // 自動再生スイッチ 1・・・自動再生
+var random_sw    = "ON";                                    // 再生タイプ "ON" ・・・ランダム再生 "OFF" ・・・ 順次再生
+//  ★　動画のビデオＩＤ指定など各種設定　終了
+var params       = { allowScriptAccess: "always" };
+var atts         = { id: "myytplayer" };
 if(random_sw=="ON"){index001=Math.floor(Math.random()*VideoID.length);}
-VideoIDW = VideoID[index001];
+VideoIDW         = VideoID[index001];
 swfobject.embedSWF("http://www.youtube.com/v/" + VideoIDW + "&enablejsapi=1&version=3&playerapiid=ytplayer",
-"ytapiplayer", "150", "130", "8", null, null, params, atts); // ● 横 150px 縦 130px
+"ytapiplayer", "400", "225", "8", null, null, params, atts); // 横 150px 縦 130px
+// 実行 ブログ表示から2秒のインターバル
 $(document).ready(function(){
-setTimeout('play()',2000);                                   // ● ブログ表示から2秒のインターバル
+setTimeout('play(autoplaysw)',2000);
 });
 
 // YouTubePlayer 監視
 function onYouTubePlayerReady(playerId) {
- ytplayer = document.getElementById("myytplayer");
- setInterval(updatePlayerInfo, 250);                         // ● プレイ時間監視間隔 0.25秒
+ ytplayer        = document.getElementById("myytplayer");
+ setInterval(updatePlayerInfo, 250);                         // プレイ時間監視間隔 0.25秒
 }
-
 // YouTubePlayer 状況把握
 function updatePlayerInfo() {
  if(ytplayer.getPlayerState() == 0){
   if(ytplayer) {
-   play();                                                  // ★ 動画を再生します
+   play(autoplaysw);                                         // 動画を再生します
   }
  }
 }
 // YouTubePlayer 再生
-function play() {
+function play(autoplaysws) {
  if (ytplayer) {
-  ytplayer.cueVideoById(VideoID[index001], 0);               // ● 開始地点 0秒
-  ytplayer.playVideo();                                      // ★ 動画を再生します
-  ytplayer.setVolume(20);                                    // ★ 音量をセットします 
+  ytplayer.cueVideoById(VideoID[index001], VideoPos[index001]);
+  if(autoplaysws==1){
+   ytplayer.playVideo();                                      // 動画を再生します
+  }
+  ytplayer.setVolume(VideoVolumes[index001]);                 // 音量をセットします 
   if(random_sw == "ON"){
-   index001=Math.floor(Math.random()*VideoID.length);
+   index001=Math.floor(Math.random()*VideoID.length);         // ランダム選曲
   }else{
-   index001++;
-   if(VideoID.length == index001){index001 = 0;}
+   index001++;                                                // 順次再生
+   if(VideoID.length == index001){index001 = 0;}              // 最後まできたら最初に戻る
   }
  }
 }
@@ -58,14 +62,4 @@ function play() {
 　記事やメッセージボードの場合はＨＴＭＬモードで記述すること
 
 <div id="ytapiplayer"></div>
-
-
-★　説明
-
-①の動画のビデオＩＤ指定　は、動画のビデオＩＤ指定して下さい。
-②　は、　"ON"　か　"OFF" を指定して下さい。
-音量は0～100を指定
-自動再生しない場合は下記をコメントアウト(// を先頭に入れる）
-
-  ytplayer.playVideo();                                      // ★ 動画を再生します
 
