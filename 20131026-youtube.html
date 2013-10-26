@@ -7,10 +7,12 @@
 <script src="http://www.google.com/jsapi"></script>
 <script type="text/javascript">google.load("swfobject", "2.1");</script>
 <script type="text/javascript">
+//  ●　準備開始
 //  ★　動画のビデオＩＤ指定など各種設定　開始
 var VideoID      = ["XHdcW2axwMk","MBuJ5R2KBKo","WIdWXhV33vs"];
 var VideoVolumes = [20,50,100];                     // 音量の指定
 var VideoPos     = [0,0,0];                         // 再生位置指定
+var Videoseekbar = 0;                               // 1・・・ apiplayer(音量・再生/停止・経過バー非表示)
 var index001     = 0;                               // 開始ビデオ指定(順次再生の場合)
 var autoplaysw   = 1;                               // 自動再生スイッチ 1・・・自動再生
 var random_sw    = "ON";                            // 再生タイプ "ON" ・・・ランダム再生 "OFF" ・・・ 順次再生
@@ -18,13 +20,23 @@ var random_sw    = "ON";                            // 再生タイプ "ON" ・�
 var params       = { allowScriptAccess: "always" };
 var atts         = { id: "myytplayer" };
 if(random_sw=="ON"){index001=Math.floor(Math.random()*VideoID.length);}
-VideoIDW         = VideoID[index001];
-swfobject.embedSWF("http://www.youtube.com/v/" + VideoIDW + "&enablejsapi=1&version=3&playerapiid=ytplayer",
+var embedSWF_URL;
+if(Videoseekbar!=1){                                                  // シークバー(経過バー)表示判定
+ embedSWF_URL    = "http://www.youtube.com/v/"+VideoID[index001]+"?"; // 通常
+}else{
+ embedSWF_URL    = "http://www.youtube.com/apiplayer?";               // 音量・再生/停止・経過バー非表示
+}
+swfobject.embedSWF(embedSWF_URL + "enablejsapi=1&version=3&playerapiid=ytplayer",
 "ytapiplayer", "400", "225", "8", null, null, params, atts); // 横 400px 縦 225px
-// 実行 ブログ表示から2秒のインターバル
+//  ●　準備はここまで
+
+//  ● 実行 ブログ表示から2秒のインターバル
 $(document).ready(function(){
-setTimeout('play(autoplaysw)',2000);
+setTimeout('play(autoplaysw)',2000);  // 順次・ランダム再生
+Video_selectbox('#videoSelection')    // セレクトボックス制御
 });
+
+//  ●　以下は各種関数
 
 // YouTubePlayer 監視
 function onYouTubePlayerReady(playerId) {
@@ -55,6 +67,21 @@ function play(autoplaysws) {
   }
  }
 }
+// セレクトボックス制御
+function Video_selectbox(selectors){
+ $("select"+selectors).change(function(){
+  var SID_Vol_Pos="";                                      // ビデオＩＤ ボリューム 開始位置(startSeconds)
+  $("select"+selectors+" option:selected").each(function(){
+   SID_Vol_Pos = $(this).val().split(",");                 // csv分割
+  });
+  if(SID_Vol_Pos[0]!= "none"){
+   if(ytplayer) {
+    ytplayer.setVolume(SID_Vol_Pos[1]);                    // 音量をセットします 
+    ytplayer.loadVideoById(SID_Vol_Pos[0],SID_Vol_Pos[2]); // 動画を再生します
+   }
+  }
+ }).change();
+}
 </script>
 
 
@@ -62,6 +89,27 @@ function play(autoplaysws) {
 　記事やメッセージボードの場合はＨＴＭＬモードで記述すること
 
 <div id="ytapiplayer"></div>
+
+
+★　セレクトボックス利用のケース
+記事やメッセージボードやフリースペースやフリープラグインに追加する
+記事やメッセージボードの場合はＨＴＭＬモードで記述すること
+( value="XHdcW2axwMk,20,0" → value="動画ＩＤ,音量,開始位置" )
+
+<div id="ytapiplayer"></div>
+<br>
+<div id="videosel">
+<select id="videoSelection">
+<option value="none" style="background-color:#00ff00;color:#000000;">曲の選択</option>
+<option value="XHdcW2axwMk,20,0"  style="background-color:#ffffff;color:#000000;">【MV】ギンガムチェック / AKB48[公式]</option>
+<option value="MBuJ5R2KBKo,30,0"  style="background-color:#ffffff;color:#000000;">【MV】真夏のSounds good ! (Dance ver.) / AKB48[公式] </option>
+<option value="WIdWXhV33vs,100,0" style="background-color:#ffffff;color:#000000;">【MV】UZA -Dance ver.- / AKB48[公式]</option>
+</select>
+</div>
+
+★　 YouTube JavaScript Player API　リファレンス（説明書）
+
+https://developers.google.com/youtube/js_api_reference?hl=ja&csw=1
 
 
 
