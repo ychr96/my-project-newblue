@@ -20,7 +20,7 @@ var atts         = { id: "myytplayer" };
 if(random_sw=="ON"){index001=Math.floor(Math.random()*VideoID.length);}
 VideoIDW         = VideoID[index001];
 swfobject.embedSWF("http://www.youtube.com/v/" + VideoIDW + "&enablejsapi=1&version=3&playerapiid=ytplayer",
-"ytapiplayer", "400", "225", "8", null, null, params, atts); // 横 150px 縦 130px
+"ytapiplayer", "400", "225", "8", null, null, params, atts); // 横 400px 縦 225px
 // 実行 ブログ表示から2秒のインターバル
 $(document).ready(function(){
 setTimeout('play(autoplaysw)',2000);
@@ -62,4 +62,6 @@ function play(autoplaysws) {
 　記事やメッセージボードの場合はＨＴＭＬモードで記述すること
 
 <div id="ytapiplayer"></div>
+
+
 
