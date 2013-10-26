@@ -1,0 +1,71 @@
+★　フリープラグインへ追加する。
+
+
+
+
+<script src='http://stat100.ameba.jp/blog/js/apm001.js'></script>
+<script src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("swfobject", "2.1");</script>
+<script type="text/javascript">
+var VideoID_list = ["iZdyuIab9v8","BXsusJ787sU","-uGCWT2wvUI",]; // ① 動画のビデオＩＤ指定
+</script>
+<script type="text/javascript">
+var VideoID=VideoID_list;
+var index001 = 0;                                            // ● 開始ビデオ指定(順次再生の場合)
+var random_sw = "ON";                                        // ② 再生タイプ "ON" ・・・ランダム再生 "OFF" ・・・ 順次再生
+var params = { allowScriptAccess: "always" };
+var atts = { id: "myytplayer" };
+if(random_sw=="ON"){index001=Math.floor(Math.random()*VideoID.length);}
+VideoIDW = VideoID[index001];
+swfobject.embedSWF("http://www.youtube.com/v/" + VideoIDW + "&enablejsapi=1&version=3&playerapiid=ytplayer",
+"ytapiplayer", "150", "130", "8", null, null, params, atts); // ● 横 150px 縦 130px
+$(document).ready(function(){
+setTimeout('play()',2000);                                   // ● ブログ表示から2秒のインターバル
+});
+
+// YouTubePlayer 監視
+function onYouTubePlayerReady(playerId) {
+ ytplayer = document.getElementById("myytplayer");
+ setInterval(updatePlayerInfo, 250);                         // ● プレイ時間監視間隔 0.25秒
+}
+
+// YouTubePlayer 状況把握
+function updatePlayerInfo() {
+ if(ytplayer.getPlayerState() == 0){
+  if(ytplayer) {
+   play();                                                  // ★ 動画を再生します
+  }
+ }
+}
+// YouTubePlayer 再生
+function play() {
+ if (ytplayer) {
+  ytplayer.cueVideoById(VideoID[index001], 0);               // ● 開始地点 0秒
+  ytplayer.playVideo();                                      // ★ 動画を再生します
+  ytplayer.setVolume(20);                                    // ★ 音量をセットします 
+  if(random_sw == "ON"){
+   index001=Math.floor(Math.random()*VideoID.length);
+  }else{
+   index001++;
+   if(VideoID.length == index001){index001 = 0;}
+  }
+ }
+}
+</script>
+
+
+★　記事やメッセージボードやフリースペースやフリープラグインに追加する
+　記事やメッセージボードの場合はＨＴＭＬモードで記述すること
+
+<div id="ytapiplayer"></div>
+
+
+★　説明
+
+①の動画のビデオＩＤ指定　は、動画のビデオＩＤ指定して下さい。
+②　は、　"ON"　か　"OFF" を指定して下さい。
+音量は0～100を指定
+自動再生しない場合は下記をコメントアウト(// を先頭に入れる）
+
+  ytplayer.playVideo();                                      // ★ 動画を再生します
+
