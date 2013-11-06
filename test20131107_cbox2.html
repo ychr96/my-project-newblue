@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q11116003551 test</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+// チェックボックスに使用している名前
+chn = new Array("ch1","ch2","ch3","ch4","ch5","ch6");
+// チェックボックスにチェックできる数を制限する
+function chBx(cn){
+ var cn_name = cn.name; // 名前(name)を求める
+// chc = document.f.hero_show.value.length; // チェックできる数
+ var chc = 4; // チェックできる数
+ var cnt = 0;
+ for(i=0; i<chn.length; i++) {
+  if(document.nForm.elements[chn[i]].checked) cnt++;
+ }
+ if(cnt > chc) {
+  alert("チェックできる項目は" + chc + "個までです");
+  document.nForm.elements[cn_name].checked = false;
+ }
+}
+
+function chkdisp(){
+ var j;
+ for(i=0;i<chn.length+1;i++){ // すべてをクリアー a1～a7
+  j = i + 1;
+  document.getElementById("a"+j).style.display="none";
+ }
+ var ch7_sw="0"; // 全くチェックされていないかをチェック
+ for(i=0;i<chn.length;i++){
+  j = i + 1;
+  if(document.nForm.elements[chn[i]].checked){ // チェックされている場合
+    document.getElementById("a"+j).style.display="block";
+    ch7_sw="1";
+  }
+ }
+ if(ch7_sw=="0"){ // チェックが全くない場合
+  document.getElementById("a7").style.display="block";
+ }
+}
+</script>
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+color:#ffffff;
+}
+#container{
+width:700px;
+margin:auto;
+}
+</style>
+</HEAD>
+<body>
+<div id="container">
+チェックどうぞ。<BR>
+<FORM name="nForm" id="nForm" style="display:block">
+<INPUT type="checkbox" id="ch1" name="ch1" onClick="chBx(this)" value="1">チェックボックス１<BR>
+<INPUT type="checkbox" id="ch2" name="ch2" onClick="chBx(this)" value="2">チェックボックス２<BR>
+<INPUT type="checkbox" id="ch3" name="ch3" onClick="chBx(this)" value="3">チェックボックス３<BR>
+<INPUT type="checkbox" id="ch4" name="ch4" onClick="chBx(this)" value="4">チェックボックス４<BR>
+<INPUT type="checkbox" id="ch5" name="ch5" onClick="chBx(this)" value="5">チェックボックス５<BR>
+<INPUT type="checkbox" id="ch6" name="ch6" onClick="chBx(this)" value="6">チェックボックス６<BR>
+</FORM>
+
+<input type="button" name="kettei" value="決定" onclick="chkdisp()"><br>
+
+
+<div id="a1"style="display:none">１です。</div>
+<div id="a2"style="display:none">２です。</div>
+<div id="a3"style="display:none">３です。</div>
+<div id="a4"style="display:none">４です。</div>
+<div id="a5"style="display:none">５です。</div>
+<div id="a6"style="display:none">６です。</div>
+<div id="a7"style="display:none">７です。</div>
+</div>
+</body>
+</HTML>
+
