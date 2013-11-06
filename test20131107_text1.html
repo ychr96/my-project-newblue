@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q13116092673 test</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+_domains_array     = new Array();
+function domain_read(){
+  $.get("top_domain.txt", function(data){
+    data2 = data.replace(/\n/g, " ");
+    _domains_array = data2.split(" ");
+    domain_check();
+  });
+}
+function domain_check(){
+  var url          = $("#URL_input").val();
+  var arr1         = url.split("/");
+  var arr2         = arr1[2].split(".");
+  var Toplength    = arr2.length-1;
+  var Secondlength = arr2.length-2;
+  var temp =['co', 'ac', 'go', 'or','ne','ad','gr', 'ed', 'lg'];
+  for(var  i = 0; i < arr2.length-1; i++){
+   for(var j = 0; j < temp.length;   j++){
+    if(arr2[i] == temp[j]){
+     Secondlength  = arr2.length-3;
+    }
+   }
+  }
+  var dom  = arr2[Toplength];
+  var dom2 = arr2[Secondlength];
+  $("#domain_result").html(dom +" "+domain_search(dom)+"<br>"+dom2 + "<br>");
+}
+function domain_search(doms){
+  var domains_name="";
+  for(i=0; i < _domains_array.length; i++){
+   if(_domains_array[i]==doms){
+    j = i+1;
+    domains_name  = _domains_array[j];
+    break;
+   }
+   i++;
+  }
+  return domains_name;
+}
+</script>
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+color:#ffffff;
+}
+#container{
+width:700px;
+margin:auto;
+}
+</style>
+</HEAD>
+<body>
+<div id="container">
+<input type="text" value="" id="URL_input" size="50" maxlength="80">
+<input type="button" value="検索" onclick="domain_read();">
+<div id="domain_result"></div>
+</div>
+</body>
+</HTML>
+
