@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q12116062042 test</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ $("#selectArea02").change(function () {
+  if(($('#selectArea01').val()=="select02") && ($('#selectArea02').val()=="select03")){
+    alert("1組2名様でのご予約となります。");
+    $("#selectArea02 option:first").prop('selected', true);
+  }
+ })
+ $("#selectArea01").change(function () {
+  if(($('#selectArea01').val()=="select02") && ($('#selectArea02').val()=="select03")){
+    alert("1組2名様でのご予約となります。");
+    $("#selectArea01 option:first").prop('selected', true);
+  }
+ })
+});
+
+</script>
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+color:#ffffff;
+}
+#container{
+width:500px;
+margin:auto;
+}
+</style>
+</HEAD>
+<body>
+<div id="container">
+<ul>
+<li>大人
+<select id="selectArea01" class="selcetArea">
+<option value="">選択してください</option>
+<option value="select01">1</option>
+<option value="select02">2</option>
+</select> 人</li>
+<li>子供
+<select id="selectArea02" class="selcetArea">
+<option value="">選択してください</option>
+<option value="">-</option>
+<option value="select03">1</option>
+</select> 人</li>
+</ul>
+</body>
+</HTML>
+
