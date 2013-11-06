@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q10115996435 test</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+// Checkbox Function
+function Cbox_func(Form_names,names){
+ var Cbox_obj   = eval('document.'+Form_names+'.elements["'+names+'"]');
+ var Cbox_value, Cbox_check;
+  if(Cbox_obj.checked){
+   Cbox_check   = "1";
+  }else{
+   Cbox_check   = "0";
+  }
+  Cbox_value = Cbox_obj.value;
+return {Cbox_check:Cbox_check,Cbox_value:Cbox_value};
+}
+$(document).ready(function(){
+ $(".product input[type=checkbox]").click(function(){
+    var i=1;
+   $(".product .trarea").each(function(){
+    if(Cbox_func("form1","tb"+i).Cbox_check=="1"){
+     $(this).css("background","#CCC");
+    }else{
+     $(this).css("background","transparent");
+    }
+    i++;
+  });
+ });
+});
+</script>
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+color:#ffffff;
+}
+#container{
+width:700px;
+margin:auto;
+}
+</style>
+</HEAD>
+<body>
+<div id="container">
+<form name="form1">
+<table class="product" border="1">
+<tr class="trarea">
+<td ><input name="tb1" type="checkbox" ></td>
+<td ><img src="###" alt="img"></td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+</tr>
+<tr class="trarea">
+<td ><input name="tb2" type="checkbox" ></td>
+<td ><img src="###" alt="img"></td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+</tr>
+<tr class="trarea">
+<td ><input name="tb3" type="checkbox" ></td>
+<td ><img src="###" alt="img"></td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+</tr>
+<tr class="trarea">
+<td ><input name="tb4" type="checkbox" ></td>
+<td ><img src="###" alt="img"></td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+</tr>
+<tr class="trarea">
+<td ><input name="tb5" type="checkbox" ></td>
+<td ><img src="###" alt="img"></td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+</tr>
+<tr class="trarea">
+<td ><input name="tb6" type="checkbox" ></td>
+<td ><img src="###" alt="img"></td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+<td >##</td>
+</tr>
+</table>
+</form>
+</div>
+</body>
+</HTML>
+
