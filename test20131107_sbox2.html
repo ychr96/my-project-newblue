@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q13116034023 test</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+// グローバル変数
+Goods_array    = new Array();
+Quantity_array = new Array();
+Color_array    = new Array();
+Option_array   = new Array();
+form_name      = "form1";
+// 主処理
+$(document).ready(function(){
+ init_set();
+ change_check();
+});
+// セレクトボックスの変更
+function change_check(){
+ $('#form1 select.Goods').change (function() {
+  var this_name = $(this).attr("name");
+  var select_name,option_val;
+  for(i=0; i < Goods_array.length; i++){
+   if(this_name==Goods_array[i]){
+    option_del_Goods(i);                           // 数量～オプションを削除
+    option_val = Sbox_func(this_name).Sbox_value;
+    if(option_val!="none"){                        // 選択以外を選択
+     select_name = Quantity_array[i];
+     Soption_add_Quantity(select_name,option_val); // 数量セット
+     select_name = Color_array[i];
+     Soption_add_Color(select_name,option_val);    // 色セット
+     select_name = Option_array[i];
+     Soption_add_Option(select_name,option_val);   // オプションセット
+    }
+   }
+  }
+ }).change();
+}
+function init_set(){// 初期処理 Array作成
+ var indexs;
+ indexs = 0;
+ $(".Goods").each(function(){
+  Goods_array[indexs]    = $(this).attr("name");
+  indexs++;
+ });
+ indexs = 0;
+ $(".Quantity").each(function(){
+  Quantity_array[indexs] = $(this).attr("name");
+  indexs++;
+ });
+ indexs = 0;
+ $(".Color").each(function(){
+  Color_array[indexs]    = $(this).attr("name");
+  indexs++;
+ });
+ indexs = 0;
+ $(".Option").each(function(){
+  Option_array[indexs]   = $(this).attr("name");
+  indexs++;
+ });
+}
+function Soption_add_Quantity(names,option_vals){ // 数量セット
+ var Sbox_element = eval('document.'+form_name+'.'+names);
+ switch (option_vals) {
+  case "pot":
+   Sbox_element.options[0] = new Option("選択", "none");
+   Sbox_element.options[1] = new Option("1", "1");
+   Sbox_element.options[2] = new Option("2", "2");
+   Sbox_element.options[3] = new Option("3", "3");
+   break;
+  case "fryingpan":
+   Sbox_element.options[0] = new Option("選択", "none");
+   Sbox_element.options[1] = new Option("1", "1");
+   Sbox_element.options[2] = new Option("2", "2");
+   Sbox_element.options[3] = new Option("3", "3");
+   Sbox_element.options[4] = new Option("4", "4");
+   Sbox_element.options[5] = new Option("5", "5");
+   break;
+  case "stove":
+   Sbox_element.options[0] = new Option("選択", "none");
+   Sbox_element.options[1] = new Option("12", "12");
+   Sbox_element.options[2] = new Option("24", "24");
+   Sbox_element.options[3] = new Option("36", "36");
+   Sbox_element.options[4] = new Option("48", "48");
+   Sbox_element.options[5] = new Option("60", "60");
+   break;
+  default:
+   break;
+ }
+}
+function Soption_add_Color(names,option_vals){ // 色セット
+ var Sbox_element = eval('document.'+form_name+'.'+names);
+ switch (option_vals) {
+  case "pot":
+   Sbox_element.options[0] = new Option("選択", "none");
+   Sbox_element.options[1] = new Option("黒", "black");
+   Sbox_element.options[2] = new Option("白", "white");
+   Sbox_element.options[3] = new Option("赤", "red");
+   break;
+  case "fryingpan":
+   Sbox_element.options[0] = new Option("選択", "none");
+   Sbox_element.options[1] = new Option("青", "blue");
+   Sbox_element.options[2] = new Option("緑", "green");
+   Sbox_element.options[3] = new Option("黄色", "yellow");
+   break;
+  case "stove":
+   Sbox_element.options[0] = new Option("選択", "none");
+   Sbox_element.options[1] = new Option("ピンク", "pink");
+   Sbox_element.options[2] = new Option("青", "blue");
+   Sbox_element.options[3] = new Option("黄色", "yellow");
+   break;
+  default:
+   break;
+ }
+}
+function Soption_add_Option(names,option_vals){ // オプションセット
+ var Sbox_element = eval('document.'+form_name+'.'+names);
+ switch (option_vals) {
+  case "pot":
+   Sbox_element.options[0] = new Option("選択", "none");
+   Sbox_element.options[1] = new Option("オプション１", "o1");
+   Sbox_element.options[2] = new Option("オプション２", "o2");
+   Sbox_element.options[3] = new Option("オプション３", "o3");
+   break;
+  case "fryingpan":
+   Sbox_element.options[0] = new Option("選択", "none");
+   Sbox_element.options[1] = new Option("オプション４", "o4");
+   Sbox_element.options[2] = new Option("オプション５", "o5");
+   Sbox_element.options[3] = new Option("オプション６", "o6");
+   break;
+  case "stove":
+   Sbox_element.options[0] = new Option("選択", "none");
+   Sbox_element.options[1] = new Option("オプション７", "o7");
+   Sbox_element.options[2] = new Option("オプション８", "o8");
+   Sbox_element.options[3] = new Option("オプション９", "o9");
+   break;
+  default:
+   break;
+ }
+}
+
+function option_del(){ // 全削除処理(Reset)
+ for(i=0; i < Goods_array.length; i++){
+  option_del_Goods(i);
+ }
+}
+function option_del_Goods(index_del){ // 削除処理（行単位)
+ var select_name;
+ select_name = Quantity_array[index_del];
+ option_del_item(select_name);
+ select_name = Color_array[index_del];
+ option_del_item(select_name);
+ select_name = Option_array[index_del];
+ option_del_item(select_name);
+}
+function option_del_item(select_names){ // 削除処理(個別)
+  Sbox_obj = eval('document.'+form_name+'.'+select_names);
+  Sbox_len = Sbox_obj.length;
+  if(Sbox_len!=0){
+   for(j=0; j < Sbox_len; j++){
+      Sbox_obj.options[0] = null;
+   }
+  }
+}
+// セレクトボックスの値を求める
+function Sbox_func(names){
+ var Sbox_obj   = eval('document.'+form_name+'.'+names);
+ var Sbox_index = Sbox_obj.selectedIndex;
+ var Sbox_value = Sbox_obj[Sbox_index].value;
+ var Sbox_text  = Sbox_obj[Sbox_index].text;
+ return {Sbox_value:Sbox_value,Sbox_text:Sbox_text};
+}
+// チェック処理
+function check(){
+
+}
+</script>
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+color:#ffffff;
+}
+#container{
+width:700px;
+margin:auto;
+}
+</style>
+</HEAD>
+<body>
+<div id="container">
+<br><br><br><br>
+<FORM method="get" action="#" name="form1" id="form1" onSubmit="return check()">
+商品<select name="Goods1"        class="Goods">
+<option value="none">選択</option>
+<option value="pot">なべ</option>
+<option value="fryingpan">フライパン</option>
+<option value="stove">コンロ</option>
+</select>　
+数量<select name="Quantity1"     class="Quantity">
+</select>　
+カラー<select name="Color1"      class="Color">
+</select>　
+オプション<select name="Option1" class="Option">
+</select>
+<br><br>
+商品<select name="Goods2"        class="Goods">
+<option value="none">選択</option>
+<option value="pot">なべ</option>
+<option value="fryingpan">フライパン</option>
+<option value="stove">コンロ</option>
+</select>　
+数量<select name="Quantity2"     class="Quantity">
+</select>　
+カラー<select name="Color2"      class="Color">
+</select>　
+オプション<select name="Option2" class="Option">
+</select>
+<br><br>
+商品<select name="Goods3"        class="Goods">
+<option value="none">選択</option>
+<option value="pot">なべ</option>
+<option value="fryingpan">フライパン</option>
+<option value="stove">コンロ</option>
+</select>　
+数量<select name="Quantity3"     class="Quantity">
+</select>　
+カラー<select name="Color3"      class="Color">
+</select>　
+オプション<select name="Option3" class="Option">
+</select>
+<br><br><br><br>
+<input type="reset" name="reset" value="リセット" onclick="option_del()"><br><br>
+<input type="submit" value="送信">
+</FORM>
+
+</div>
+</body>
+</HTML>
