@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>google Calendar q10116299290 テスト</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+function google_calendar_set(){
+ var google_Account_id="kiyoto_777"; // グーグルアカウントＩＤ
+ var dates="";
+ var calendar_url="https://www.google.com/calendar/embed?src="+google_Account_id+"%40yahoo.co.jp&amp;ctz=Asia/Tokyo";
+ var calendar_iframe1='<iframe width="300" scrolling="no" height="250" frameborder="0" style="border: 0" src="';
+ var calendar_iframe2='"></iframe>';
+// 翌月の年月
+ var today        = new Date();
+ var year_next    = today.getYear();              // 年
+ var month_next   = today.getMonth() + 2;         // 月
+ if(month_next>12){month_next=1;year_next=year_next+1;}
+// 年月の整形
+ if(year_next    < 2000) { year_next += 1900; }
+ if(month_next   < 10)   { month_next = "0"   + month_next; }
+// デバッグ用
+//alert("翌月="+String(year_next)+String(month_next)+"01");
+// 翌月
+ dates="&dates="+String(year_next)+String(month_next)+"01"+"/"+String(year_next)+String(month_next)+"01";
+ dates+=dates;
+ var calendar_iframe_next=calendar_iframe1+calendar_url+dates+calendar_iframe2;
+// 当月
+ var calendar_iframe_now=calendar_iframe1+calendar_url+calendar_iframe2;
+// Set
+ $('.calendar_now').after(calendar_iframe_now);
+ $('.calendar_next').after(calendar_iframe_next);
+}
+$(document).ready(function() {
+google_calendar_set();
+});
+</script>
+</head>
+<body>
+</span><span class="calendar_now"></span><span class="calendar_next"></span>
+</body>
+</HTML>
+
+
