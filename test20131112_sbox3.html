@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q13116330528 test</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+// グローバル変数
+Desired_day_array     = new Array();// 希望日
+Desired_time_array    = new Array();// 希望時間
+form_name      = "form1";
+// 主処理
+$(document).ready(function(){
+ init_set();
+ change_check();
+});
+// セレクトボックスの変更
+function change_check(){
+ $('#form1 select.Desired_day').change (function() {
+  var this_name = $(this).attr("name");
+  var select_name,option_val;
+  for(i=0; i < Desired_day_array.length; i++){
+   if(this_name==Desired_day_array[i]){
+    option_del_Desired_time(i);                         // 希望時間を削除
+    option_val = Sbox_func(this_name).Sbox_class;
+    if(option_val!=""){                                 // 選択以外を選択
+      select_name = Desired_time_array[i];
+      Soption_add_Desired_time(select_name,option_val); // 希望時間セット
+    }
+   }
+  }
+ }).change();
+}
+function init_set(){// 初期処理 Array作成
+ var indexs;
+ indexs = 0;
+ $(".Desired_day").each(function(){
+  Desired_day_array[indexs]    = $(this).attr("name");
+  indexs++;
+ });
+ indexs = 0;
+ $(".Desired_time").each(function(){
+  Desired_time_array[indexs] = $(this).attr("name");
+  indexs++;
+ });
+}
+function Soption_add_Desired_time(names,option_vals){ // 希望時間セット
+ var Sbox_element = eval('document.'+form_name+'.'+names);
+ switch (option_vals) {
+  case "mon":
+   Sbox_element.options[0] = new Option("ご希望の時間帯を選択してください", "");
+   Sbox_element.options[1] = new Option("12時", "12時");
+   break;
+  case "tue":
+   Sbox_element.options[0] = new Option("ご希望の時間帯を選択してください", "");
+   Sbox_element.options[1] = new Option("12時", "12時");
+   Sbox_element.options[1] = new Option("14時", "14時");
+   break;
+  case "wed":
+   Sbox_element.options[0] = new Option("ご希望の時間帯を選択してください", "");
+   break;
+  case "thu":
+   Sbox_element.options[0] = new Option("ご希望の時間帯を選択してください", "");
+   break;
+  case "fri":
+   Sbox_element.options[0] = new Option("ご希望の時間帯を選択してください", "");
+   break;
+  case "sta":
+   Sbox_element.options[0] = new Option("ご希望の時間帯を選択してください", "");
+   break;
+  default:
+   break;
+ }
+}
+function option_del(){ // 全削除処理(Reset)
+ for(i=0; i < Desired_day_array.length; i++){
+  option_del_Desired_day(i);
+ }
+}
+function option_del_Desired_time(index_del){ // 削除処理（行単位)
+ var select_name;
+ select_name = Desired_time_array[index_del];
+ option_del_item(select_name);
+}
+function option_del_item(select_names){ // 削除処理(個別)
+  Sbox_obj = eval('document.'+form_name+'.'+select_names);
+  Sbox_len = Sbox_obj.length;
+  if(Sbox_len!=0){
+   for(j=0; j < Sbox_len; j++){
+      Sbox_obj.options[0] = null;
+   }
+  }
+}
+// セレクトボックスの値を求める
+function Sbox_func(names){
+ var Sbox_obj   = eval('document.'+form_name+'.'+names);
+ var Sbox_index = Sbox_obj.selectedIndex;
+ var Sbox_value = Sbox_obj[Sbox_index].value;
+ var Sbox_text  = Sbox_obj[Sbox_index].text;
+ var Sbox_class = Sbox_obj[Sbox_index].className;
+ return {Sbox_value:Sbox_value,Sbox_text:Sbox_text,Sbox_class:Sbox_class};
+}
+// チェック処理
+function check(){
+
+}
+</script>
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+color:#ffffff;
+}
+#container{
+width:700px;
+margin:auto;
+}
+</style>
+</HEAD>
+<body>
+<div id="container">
+<br><br><br><br>
+<FORM method="get" action="#" name="form1" id="form1" onSubmit="return check()">
+<dl class="mailform" id="deliveryTime">
+<dt class="mfp"><span class="must">必須</span>第1ご希望日時</dt>
+<dd class="mfp">
+
+<select class="Desired_day" name="第1ご希望日">
+<option value="">第1ご希望日を選択してください</option>
+<optgroup label="2013年11月" id="hiniti01-2013-11">
+<option value="2013-11-11" class="mon">2013年11月11日(月)</option>
+<option value="2013-11-12" class="tue">2013年11月12日(火)</option>
+<option value="2013-11-13" class="wed">2013年11月13日(水)</option>
+<option value="2013-11-14" class="thu">2013年11月14日(木)</option>
+<option value="2013-11-15" class="fri">2013年11月15日(金)</option>
+<option value="2013-11-16" class="sta">2013年11月16日(土)</option>
+</optgroup>
+</select>
+
+<select name="第1ご希望時間" class="Desired_time">
+<option value="">ご希望の時間帯を選択してください</option>
+</select>
+</dd>
+</dl>
+
+<dl class="mailform" id="deliveryTime2">
+<dt class="mfp"><span class="must">必須</span>第2ご希望日時</dt>
+<dd class="mfp">
+
+<select class="Desired_day" name="第2ご希望日">
+<option value="">第2ご希望日を選択してください</option>
+<optgroup label="2013年11月" id="hiniti02-2013-11">
+<option value="2013-11-11" class="mon">2013年11月11日(月)</option>
+<option value="2013-11-12" class="tue">2013年11月12日(火)</option>
+<option value="2013-11-13" class="wed">2013年11月13日(水)</option>
+<option value="2013-11-14" class="thu">2013年11月14日(木)</option>
+<option value="2013-11-15" class="fri">2013年11月15日(金)</option>
+<option value="2013-11-16" class="sta">2013年11月16日(土)</option>
+</optgroup>
+</select>
+
+<select name="第2ご希望時間" class="Desired_time">
+<option value="">ご希望の時間帯を選択してください</option>
+</select>
+</dd>
+</dl>
+</FORM>
+
+</div>
+</body>
+</HTML>
