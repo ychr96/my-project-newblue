@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q13116334108 テスト</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ Cont = $("#content");
+ Cont.load($("#content a.seledcted").attr("href"));
+ Cont.html('');
+ Cont.data("file", $(".selected").attr("href"));
+ $('html,body').animate('slow','swing',function(){
+ Cont.load(Cont.data("file"));
+ });
+ $("#tabs a").click(function(){
+  Cont.html('');
+  Cont.data("file", $(this).attr("href"));
+  $('html,body').animate('slow','swing',function(){
+   Cont.load(Cont.data("file"));
+  });
+  $("#tabs a").removeClass("selected");
+  $(this).addClass("selected");
+  return false;
+ });
+});
+</script>
+</head>
+<body>
+<ul id="tabs">
+<li><a href="001.html" class="selected">ファイル1</a></li>
+<li><a href="002.html">ファイル2</a></li>
+<li><a href="003.html">ファイル3</a></li>
+</ul>
+<div id="content"></div>
+</body>
+</HTML>
+
+
