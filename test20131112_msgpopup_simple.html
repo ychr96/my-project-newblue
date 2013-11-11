@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q10116363115 シンプル テスト</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+function messagePOP(message_title,message,popw,poph,touka){
+ var button_all="";var msg_data="";// 変数の初期値
+ var button1="はい";
+ var b_name1="messagePOP_body";
+ var b_name2="messageP_dtl";
+ var w=document.documentElement.clientWidth  || window.innerWidth  || self.innerWidth; // 画面の幅
+ var h=document.documentElement.clientHeight || window.innerHeight || self.innerHeight;// 画面の高さ
+ var lp=w/2-popw/2;// メッセージの横の配置位置計算
+ var tp=h/2-poph/2;// メッセージの縦の配置位置計算
+ if(message_title==''){message_title="ブログからのメッセージ";}// タイトルを指定されなかった場合
+ button_all ='<span class="button1"><input type="button" name="b1_c" value="'+button1+'" onClick="b_click(1,\''+b_name1+'\',\''+b_name2+'\');"></span> ';// ボタン①の設定
+ $('body').append('<div id="'+b_name1+'" style="background-color:#333333;background-repeat:repeat;display:none;position:fixed;left:0px;top:0px;z-index:9800;width:100%;height:100%;"></div>');     // 全体背景の設定
+msg_data='<div id="'+b_name2+'" style="display:none;border-radius: 5px;border:2px solid #0055e5;background-color:#ece9d8;width:'+popw+'px;height:'+poph+'px;position:fixed;left:'+lp+'px;top:'+tp+'px;z-index:9801;"><span class="messageP_title" style="display:block;height:20px;color:#ffffff;text-align:center;padding-top:10px;padding-bottom:10px;background-color:#0055e5;">'+message_title;
+msg_data+='<span class="messageP_close" style="float:right;"></span></span><br>';
+msg_data+='<span class="messageP_msg" style="text-align:center;display:block;color:#000000;">'+message+'</span><br>'+'<span class="button_all" style="text-align:center;display:block;color:#000000;">'+button_all+'</span>'+'</div>';
+ $('body').append(msg_data);                 // メッセージの設定
+ $('#'+b_name1).fadeTo(10,touka).fadeIn(75); // 全体背景を透過度を指定して表示する
+ $('#'+b_name2).fadeIn(75);                  // メッセージを表示する
+ $(function(){$(".messageP_close").click(function(){b_click(0,b_name1,b_name2);});});// クローズボタンをクリック
+
+ window.onresize = function() {              // 画面の大きさを変えたら
+  w=document.documentElement.clientWidth  || window.innerWidth  || self.innerWidth; // 画面の幅
+  h=document.documentElement.clientHeight || window.innerHeight || self.innerHeight;// 画面の高さ
+  lp=w/2-popw/2;// メッセージの横位置計算
+  tp=h/2-poph/2;// メッセージの縦位置計算
+  $('#'+b_name2).css('top',tp+'px').css('left',lp+'px');// メッセージの位置を変更
+ };
+}
+function b_click(res,b_name1,b_name2){// クリックされたボタンの処理
+ $('#'+b_name1+',#'+b_name2).remove();// 全体背景とメッセージを削除する
+}
+
+
+function Ans1(){
+messagePOP('答え','<img src="http://kiyoto777.web.fc2.com/test/batu.png"><br> 不正解',200,200,0.8)}
+function Ans2(){
+messagePOP('答え','<img src="http://kiyoto777.web.fc2.com/test/maru.png"><br> 正解',200,200,0.8);
+}
+</script>
+</head>
+<body>
+日本の首都は東京？
+<input type="button" value="YES" onclick="Ans2()"> 
+<input type="button" value="NO" onclick="Ans1()"> 
+
+
+</body>
+</HTML>
+
+
