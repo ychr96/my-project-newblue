@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q13116334108 テスト</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#overBack").hide();
+
+
+    $(".box1").each(function () {
+        var basewidth = 100; //サムネイルのサイズ
+        var imgListNum = 5;  //段落内のサムネイルの数
+        var myMargin = 2;    //マージン幅
+        //ulの横幅を算出
+        var allwidth = (basewidth * imgListNum) + ((myMargin + myMargin) * imgListNum);
+        //ulの横幅を設定
+        $(this).find("ul").css("width", allwidth);
+        //縮小イメージをキャッシュ
+        var imgSelect = $(this).find("img.gplus");
+        //イメージの縮小処理
+        imgSelect.filter(":gt(4)").attr({
+            "src": "http://placehold.jp/cc9999/993333/20x20.png",
+                "width": "20",
+                "height": "20"
+        });
+    });
+    $("img.gplus").click(function () {
+        var imgSelect = $("img.gplus");        //選択のキャッシュ
+        var imgIndex  = imgSelect.index(this); //選択位置の取得
+        var imgURL    = imgSelect.eq(imgIndex).attr("rel");   //画像URL
+        var imgTilte  = imgSelect.eq(imgIndex).attr("title"); //画像タイト
+        var imgColum  = imgSelect.eq(imgIndex).attr("alt");   //画像説明
+
+        $("#baceBack img").attr({"src": imgURL});
+        $("#baceBack .pTitle").text(imgTilte);
+        $("#baceBack .pColum").text(imgColum);
+        var imgWidth  = $("#baceBack img").width();  //選択画像の横幅を取得
+        var imgHeight = $("#baceBack img").height(); //選択画像の縦幅を取得
+        $("#baceBack").css({
+            "width"      : parseInt(imgWidth+20)+         'px',
+            "height"     : parseInt(imgHeight+100)+       'px',
+            "margin-left": '-'+parseInt((imgWidth+20)/2)+ 'px',
+            "margin-top" : '-'+parseInt((imgHeight+100)/2)+'px'
+        });
+    });
+});
+</script>
+<style>
+html, body {
+    width: 100%;
+    height: 100%;
+}
+.box1 ul {
+    list-style-type: none;
+}
+.box1 ul li {
+    float: left;
+    margin: 0 2px;
+}
+#overBack {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    z-index: 50;
+}
+#baceBack {
+	background: -moz-linear-gradient(
+		top,
+		#f0f0f0 0%,
+		#545454);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#f0f0f0),
+		to(#545454));
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow:
+		0px 1px 2px rgba(000,000,000,0.5),
+		inset 0px 0px 0px rgba(087,087,087,0);
+	-webkit-box-shadow:
+		0px 1px 2px rgba(000,000,000,0.5),
+		inset 0px 0px 0px rgba(087,087,087,0);
+	box-shadow:
+		0px 1px 2px rgba(000,000,000,0.5),
+		inset 0px 0px 0px rgba(087,087,087,0);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: #FFF;
+    opacity: 1;
+    z-index: 51;
+    text-align: center;
+}
+#baceBack img {
+    padding-top: 10px;
+    display:inline;
+}
+
+.pTitle{
+    line-height: 0.2em;
+}
+.pColum{
+    line-height: 1em;
+}
+.clearfix:after {
+    content:".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    display: inline-table;
+}
+/* Hides from IE-mac \*/
+ * html .clearfix {
+    height: 1%;
+}
+.clearfix {
+    display: block;
+}
+/* End hide from IE-mac */
+ .textHide {
+    text-indent:100%;
+    white-space:nowrap;
+    overflow:hidden;
+}
+</style>
+</head>
+<body>
+<div class="box1 clearfix">
+    <ul>
+        <li>
+            <img src="http://placehold.jp/100x100.png" title="タイトル1" alt="まるまるでさんんかくさんかくな感じになってます。" rel="http://placehold.jp/150x150.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" title="タイトル2" alt="はじめ2" rel="http://placehold.jp/180x150.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" title="タイトル3" alt="はじめ3" rel="http://placehold.jp/150x200.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" title="タイトル4" alt="はじめ4" rel="http://placehold.jp/150x150.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" class="gplus">
+        </li>
+    </ul>
+</div>
+<div class="box1 clearfix">
+    <ul>
+        <li>
+            <img src="http://placehold.jp/100x100.png" rel="5" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" rel="6" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" rel="7" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" rel="8" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" class="gplus">
+        </li>
+        <li>
+            <img src="http://placehold.jp/100x100.png" class="gplus">
+        </li>
+    </ul>
+</div>
+<div id="overBack"></div>
+<div id="baceBack">
+    <img>
+    <p class="pTitle"></p>
+    <p class="pColum"></p>
+</div></body>
+</HTML>
+
+
