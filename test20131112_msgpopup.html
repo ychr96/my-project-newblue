@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q10116363115 テスト</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+function messagePOP(message_title,message,button1,button2,button3,button4,popw,poph,touka,b_name1,b_name2,freeMove,c_back){
+var button_all="";var msg_data="";// 変数の初期値
+var w=document.documentElement.clientWidth  || window.innerWidth  || self.innerWidth; // 画面の幅
+var h=document.documentElement.clientHeight || window.innerHeight || self.innerHeight;// 画面の高さ
+var lp=w/2-popw/2;// メッセージの横の配置位置計算
+var tp=h/2-poph/2;// メッセージの縦の配置位置計算
+if(message_title==''){message_title="ブログからのメッセージ";}// タイトルを指定されなかった場合
+if(button1==''){button1="OK";}// ボタン①を指定されなかった場合
+if(button1!=''){button_all ='<span class="button1"><input type="button" name="b1_c" value="'+button1+'" onClick="b_click(1,\''+b_name1+'\',\''+b_name2+'\','+c_back+');"></span> ';}// ボタン①の設定
+if(button2!=''){button_all+='<span class="button2"><input type="button" name="b2_c" value="'+button2+'" onClick="b_click(2,\''+b_name1+'\',\''+b_name2+'\','+c_back+');"></span> ';}// ボタン②の設定
+if(button3!=''){button_all+='<span class="button3"><input type="button" name="b3_c" value="'+button3+'" onClick="b_click(3,\''+b_name1+'\',\''+b_name2+'\','+c_back+');"></span> ';}// ボタン③の設定
+if(button4!=''){button_all+='<span class="button4"><input type="button" name="b4_c" value="'+button4+'" onClick="b_click(4,\''+b_name1+'\',\''+b_name2+'\','+c_back+');"></span> ';}// ボタン④の設定
+$('body').append('<div id="'+b_name1+'" style="background-color:#333333;background-repeat:repeat;display:none;position:fixed;left:0px;top:0px;z-index:9800;width:100%;height:100%;"></div>');     // 全体背景の設定
+msg_data='<div id="'+b_name2+'" style="display:none;border-radius: 5px;border:2px solid #0055e5;background-color:#ece9d8;width:'+popw+'px;height:'+poph+'px;position:fixed;left:'+lp+'px;top:'+tp+'px;z-index:9801;"><span class="messageP_title" style="display:block;height:20px;color:#ffffff;text-align:center;padding-top:10px;padding-bottom:10px;background-color:#0055e5;">'+message_title;
+msg_data+='<span class="messageP_close" style="float:right;"></span></span><br>';
+msg_data+='<span class="messageP_msg" style="text-align:center;display:block;color:#000000;">'+message+'</span><br>'+'<span class="button_all" style="text-align:center;display:block;color:#000000;">'+button_all+'</span>'+'</div>';
+$('body').append(msg_data);                 // メッセージの設定
+if(freeMove=="1"){                          // 移動を自由にさせるか？
+j$(function(){j$('#'+b_name2).easydrag();});// 移動を自由にする(easydrag利用)
+}
+$('#'+b_name1).fadeTo(10,touka).fadeIn(75); // 全体背景を透過度を指定して表示する
+$('#'+b_name2).fadeIn(75);                  // メッセージを表示する
+$(function(){$(".messageP_close").click(function(){b_click(0,b_name1,b_name2,c_back);});});// クローズボタンをクリック
+window.onresize = function() {              // 画面の大きさを変えたら
+w=document.documentElement.clientWidth  || window.innerWidth  || self.innerWidth; // 画面の幅
+h=document.documentElement.clientHeight || window.innerHeight || self.innerHeight;// 画面の高さ
+lp=w/2-popw/2;// メッセージの横位置計算
+tp=h/2-poph/2;// メッセージの縦位置計算
+$('#'+b_name2).css('top',tp+'px').css('left',lp+'px');// メッセージの位置を変更
+};
+}
+function b_click(res,b_name1,b_name2,c_back){// クリックされたボタンの処理
+$('#'+b_name1+',#'+b_name2).remove();// 全体背景とメッセージを削除する
+// コールバックパターンによって呼び出し関数を変える
+// コールバックパターン が　1 ～ 5 でない場合は、関数をコールしない
+if(c_back==1){c_back1(res);}
+if(c_back==2){c_back2(res);}
+if(c_back==3){c_back3(res);}
+if(c_back==4){c_back4(res);}
+if(c_back==5){c_back5(res);}
+}
+
+/* freeMove は　easydrag　を使用してください
+
+ 【使用方法】
+ messagePOP(タイトル,メッセージ,ボタン①,ボタン②,ボタン③,ボタン④,横,高さ,全体背景の透過度,全体背景の名前,メッセージの名前,移動可能,コールバックパターン)
+
+ 【使用例】
+
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js'></script>
+<script type="text/javascript" src="上記のスクリプト"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+messagePOP('規約チェック','規約を守りますか？','ＹＥＳ','ＮＯ　','','',213,121,0.8,'messagePOP_body','messageP_dtl','1',1);
+});
+function c_back1(res){
+if(res==1){
+messagePOP('結果','Yesをクリック','ＯＫ','','','',199,121,0.8,'messagePOP_body','messageP_dtl','1',0);
+}else{
+messagePOP('結果','Noをクリック','ＯＫ','','','',199,121,0.8,'messagePOP_body','messageP_dtl','1',0);
+}
+}
+</script>
+<script type="text/javascript" src="EasyDrag 1.4 - Drag & Drop jQuery Plug-inのスクリプト"></script>
+<script type="text/javascript">
+jQuery.noConflict();
+var j$ = jQuery;
+</script>
+*/
+
+
+function Ans1(){
+messagePOP('答え','<img src="http://kiyoto777.web.fc2.com/test/batu.png"><br> 不正解','','','','',200,200,0.8,'messagePOP_body','messageP_dtl','0',0);}
+function Ans2(){
+messagePOP('答え','<img src="http://kiyoto777.web.fc2.com/test/maru.png"><br> 正解','','','','',200,200,0.8,'messagePOP_body','messageP_dtl','0',0);
+}
+</script>
+</head>
+<body>
+日本の首都は東京？
+<input type="button" value="YES" onclick="Ans2()"> 
+<input type="button" value="NO" onclick="Ans1()"> 
+
+
+</body>
+</HTML>
+
+
