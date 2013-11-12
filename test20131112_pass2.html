@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"
+    \"http://www.w3.org/TR/html4/loose.dtd\">
+<html>
+    <head>
+        <title>q14116318274 test</title>
+<script type="text/javascript">
+var myInput="";
+function login_check(Form_names,names){// password check
+ var Tbox_obj    = eval('document.'+Form_names+'.'+names);
+ var Tbox_value  = Tbox_obj.value;
+ alert(Tbox_value);
+}
+function myValue(myData){ // 数字入力
+  myInput += myData;
+  document.form1.pass1.value = myInput;
+}
+function myC(){           // クリアー
+ myInput="";
+  document.form1.pass1.value = myInput;
+}
+</script>
+<style>
+body{
+background-color:#000000;
+color:#ffffff;
+}
+</style>
+
+</head>
+<body>
+
+<form name="form1">
+パスワード <input type="password" name="pass1" readonly><input type="button" value="ログイン" onclick="login_check('form1','pass1')">
+</form>
+<form name="myForm">
+<table border="5" cellpadding="2" cellspacing="0"bgcolor="#000000">
+<tr><td align="center"><input type="button" value=" ７ " onclick="myValue(7)"></td><td align="center"><input type="button" value=" ８ " onclick="myValue(8)"></td><td align="center"><input type="button" value=" ９ " onclick="myValue(9)"></td></tr>
+<tr><td align="center"><input type="button" value=" ４ " onclick="myValue(4)"></td><td align="center"><input type="button" value=" ５ " onclick="myValue(5)"></td><td align="center"><input type="button" value=" ６ " onclick="myValue(6)"></td></tr>
+<tr><td align="center"><input type="button" value=" １ " onclick="myValue(1)"></td><td align="center"><input type="button" value=" ２ " onclick="myValue(2)"></td><td align="center"><input type="button" value=" ３ " onclick="myValue(3)"></td></tr>
+<tr><td align="center"><input type="button" value=" ０ " onclick="myValue(0)"></td><td></td><td align="center"><input type="button" value="Ｃ" onclick="myC()"></td></tr>
+</table>
+</form>
+</body>
+</html>
+
