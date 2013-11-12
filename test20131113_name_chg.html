@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"
+    \"http://www.w3.org/TR/html4/loose.dtd\">
+<html>
+    <head>
+        <title>q12116403017 test</title>
+<script type="text/javascript">
+function chk(){
+ setposition = document.getElementsByName("selectval");
+ for(i=0; i<setposition.length; i++){
+  document.form1.selectval.value = "1";
+  document.form1.selectval.id = "1";
+  document.form1.selectval.name = "1";
+  alert("document.form1.selectval.value="+document.form1.selectval.value);
+ }
+ return true;
+}
+</script>
+<style>
+body{
+background-color:#000000;
+color:#ffffff;
+}
+</style>
+
+</head>
+<body>
+
+<form name="form1" id="form1" action="act" method="post" >
+<input type="hidden" name="selectval" id="selid" value="">
+<input type="button" name="clearbotton" value="実行" onClick="chk();">
+</form>
+
+
+</body>
+</html>
+
