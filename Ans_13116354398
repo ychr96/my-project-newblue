@@ -1,4 +1,3 @@
-
 ●　元々のzenbackのコードの例（★はアメーバＩＤ）
 
 <!-- X:S ZenBackWidget --><div id="zenback-widget-loader"></div><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var r=Math.ceil((new Date()*1)*Math.random());var j=d.createElement("script");j.id=i;j.async=true;j.src="//w.zenback.jp/v1/?base_uri=http%3A//ameblo.jp/★/&nsid=115585274838285239%3A%3A115585465427467457&rand="+r;d.body.appendChild(j);}}(document,"zenback-widget-js");</script><!-- X:E ZenBackWidget -->
@@ -62,3 +61,12 @@ zenbackは記事単位につけても、ツイートなどのボタンは、ブ�
 ブログホームにリンクされます。
 
 
+
+●　説明
+
+zenbackのスクリプト部分を分解しています。
+
+zenbackのスクリプト部分をgetScriptで読み込んで、読み込みが完了したら、
+　指定した秒数(例:2000←2秒)で記事に作成されたフリープラグイン内のzenbackを
+  クローン（複製）して記事下に表示しています。
+フリープラグインのzenbackはCSSで非表示としています。
