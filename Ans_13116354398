@@ -1,15 +1,15 @@
 
-œ@Œ³X‚Ìzenback‚ÌƒR[ƒh‚Ì—áiš‚ÍƒAƒ[ƒo‚h‚cj
+â—ã€€å…ƒã€…ã®zenbackã®ã‚³ãƒ¼ãƒ‰ã®ä¾‹ï¼ˆâ˜…ã¯ã‚¢ãƒ¡ãƒ¼ãƒï¼©ï¼¤ï¼‰
 
-<!-- X:S ZenBackWidget --><div id="zenback-widget-loader"></div><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var r=Math.ceil((new Date()*1)*Math.random());var j=d.createElement("script");j.id=i;j.async=true;j.src="//w.zenback.jp/v1/?base_uri=http%3A//ameblo.jp/š/&nsid=115585274838285239%3A%3A115585465427467457&rand="+r;d.body.appendChild(j);}}(document,"zenback-widget-js");</script><!-- X:E ZenBackWidget -->
+<!-- X:S ZenBackWidget --><div id="zenback-widget-loader"></div><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var r=Math.ceil((new Date()*1)*Math.random());var j=d.createElement("script");j.id=i;j.async=true;j.src="//w.zenback.jp/v1/?base_uri=http%3A//ameblo.jp/â˜…/&nsid=115585274838285239%3A%3A115585465427467457&rand="+r;d.body.appendChild(j);}}(document,"zenback-widget-js");</script><!-- X:E ZenBackWidget -->
 
-‚P.‚b‚r‚r‚Ö’Ç‰Á
+ï¼‘.ï¼£ï¼³ï¼³ã¸è¿½åŠ 
 
 .plugin #zenback-widget-loader{
 display:none;
 }
 
-œ@‚b‚r‚r•ÒW‚Å‚«‚È‚¢ƒXƒLƒ“‚Ìê‡‚Í‰º‹L‚ğƒtƒŠ[ƒXƒy[ƒX‚Ü‚½‚ÍAƒtƒŠ[ƒvƒ‰ƒOƒCƒ“‚Ö’Ç‰Á‚·‚é
+â—ã€€ï¼£ï¼³ï¼³ç·¨é›†ã§ããªã„ã‚¹ã‚­ãƒ³ã®å ´åˆã¯ä¸‹è¨˜ã‚’ãƒ•ãƒªãƒ¼ã‚¹ãƒšãƒ¼ã‚¹ã¾ãŸã¯ã€ãƒ•ãƒªãƒ¼ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¸è¿½åŠ ã™ã‚‹
 
 <style>.plugin #zenback-widget-loader{display:none;}</style>
 
@@ -18,7 +18,7 @@ display:none;
 
 
 
-‚Q.ƒtƒŠ[ƒvƒ‰ƒOƒCƒ“‚Ö’Ç‰Áiš‚ÍƒAƒ[ƒo‚h‚cj
+ï¼’.ãƒ•ãƒªãƒ¼ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¸è¿½åŠ ï¼ˆâ˜…ã¯ã‚¢ãƒ¡ãƒ¼ãƒï¼©ï¼¤ï¼‰
 
 
 <div id="zenback-widget-loader"></div>
@@ -28,7 +28,7 @@ function zenback_clone(){
  $("#zenback-widget-loader").clone().insertAfter(".skinArticle3");
 }
 function zenback_set(){
- var src_name='//w.zenback.jp/v1/?base_uri=http%3A//ameblo.jp/š/&nsid=115585274838285239%3A%3A115585465427467457&rand='+Math.ceil((new Date()*1)*Math.random());
+ var src_name='//w.zenback.jp/v1/?base_uri=http%3A//ameblo.jp/â˜…/&nsid=115585274838285239%3A%3A115585465427467457&rand='+Math.ceil((new Date()*1)*Math.random());
  $.getScript(src_name,function(){setTimeout("zenback_clone();",2000);});
 }
 $(document).ready(function(){
@@ -38,27 +38,27 @@ $(document).ready(function(){
 
 
 
-œ@.skinArticle3‚ÍêŠ‚È‚Ì‚ÅA•Ï‚¦‚Ä‚­‚¾‚³‚¢B
+â—ã€€.skinArticle3ã¯å ´æ‰€ãªã®ã§ã€å¤‰ãˆã¦ãã ã•ã„ã€‚
 
-.skinArticle3‚Í“¯‚¶ƒe[ƒ}‚Ì‹L–‚Ì‰º‚Ézenback‚ğİ’u‚µ‚Ü‚·B
-.articleText‚Í‹L–‚Ì‰º‚Ézenback‚ğİ’u‚µ‚Ü‚·B
-.skinArticleFooter‚Í‹L–ƒtƒbƒ^[‚Ì‰º‚Ézenback‚ğİ’u‚µ‚Ü‚·B
+.skinArticle3ã¯åŒã˜ãƒ†ãƒ¼ãƒã®è¨˜äº‹ã®ä¸‹ã«zenbackã‚’è¨­ç½®ã—ã¾ã™ã€‚
+.articleTextã¯è¨˜äº‹ã®ä¸‹ã«zenbackã‚’è¨­ç½®ã—ã¾ã™ã€‚
+.skinArticleFooterã¯è¨˜äº‹ãƒ•ãƒƒã‚¿ãƒ¼ã®ä¸‹ã«zenbackã‚’è¨­ç½®ã—ã¾ã™ã€‚
 
-œ@setTimeout("zenback_clone();",2000); ‚Ì2000‚Í’²®‚µ‚Ä‚­‚¾‚³‚¢B
+â—ã€€setTimeout("zenback_clone();",2000); ã®2000ã¯èª¿æ•´ã—ã¦ãã ã•ã„ã€‚
 
-œ@‰º‹L•”•ª‚ÍŒ³X‚Ìzenback‚ÌƒR[ƒh‚Ì•”•ª‚É•Ï‚¦‚Ä‚­‚¾‚³‚¢B
+â—ã€€ä¸‹è¨˜éƒ¨åˆ†ã¯å…ƒã€…ã®zenbackã®ã‚³ãƒ¼ãƒ‰ã®éƒ¨åˆ†ã«å¤‰ãˆã¦ãã ã•ã„ã€‚
 
- var src_name='//w.zenback.jp/v1/?base_uri=http%3A//ameblo.jp/š/&nsid=115585274838285239%3A%3A115585465427467457&rand='+
-
-
-Œ³‚ÌƒR[ƒh‚Ì•”•ª
-
-j.src="//w.zenback.jp/v1/?base_uri=http%3A//ameblo.jp/š/&nsid=115585274838285239%3A%3A115585465427467457&rand="
+ var src_name='//w.zenback.jp/v1/?base_uri=http%3A//ameblo.jp/â˜…/&nsid=115585274838285239%3A%3A115585465427467457&rand='+
 
 
-œ@d—v
+å…ƒã®ã‚³ãƒ¼ãƒ‰ã®éƒ¨åˆ†
 
-zenback‚Í‹L–’PˆÊ‚É‚Â‚¯‚Ä‚àAƒcƒC[ƒg‚È‚Ç‚Ìƒ{ƒ^ƒ“‚ÍAƒuƒƒO‹L–‚Å‚Í‚È‚­
-ƒuƒƒOƒz[ƒ€‚ÉƒŠƒ“ƒN‚³‚ê‚Ü‚·B
+j.src="//w.zenback.jp/v1/?base_uri=http%3A//ameblo.jp/â˜…/&nsid=115585274838285239%3A%3A115585465427467457&rand="
+
+
+â—ã€€é‡è¦
+
+zenbackã¯è¨˜äº‹å˜ä½ã«ã¤ã‘ã¦ã‚‚ã€ãƒ„ã‚¤ãƒ¼ãƒˆãªã©ã®ãƒœã‚¿ãƒ³ã¯ã€ãƒ–ãƒ­ã‚°è¨˜äº‹ã§ã¯ãªã
+ãƒ–ãƒ­ã‚°ãƒ›ãƒ¼ãƒ ã«ãƒªãƒ³ã‚¯ã•ã‚Œã¾ã™ã€‚
 
 
