@@ -20,7 +20,7 @@ function MM_swapImage() { //v3.0
 
 function MM_preloadImages_Individual(preload_images){// Images preload
  for(i=0; i<preload_images.length; i++){
-  alert("preload_images["+i+"]="+preload_images[i]);// Debug
+//  alert("preload_images["+i+"]="+preload_images[i]);
   MM_preloadImages(preload_images[i]);
  }
 }
