@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"
+    \"http://www.w3.org/TR/html4/loose.dtd\">
+<html>
+<head>
+<title>q14116490284  jQueryのtoggleとloadを合わせたスクリプトについて教えてください test</title>
+<base   href="http://kiyoto777.web.fc2.com/test/">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+ $("#button").one("click", function(){
+  $("#sample").load("hoge2.txt");
+  $("#sample").toggle();
+ });
+ $("#button").on("click", function(){
+  $("#sample").toggle();
+ });
+});
+</script>
+<style>
+body{
+background-color:#000000;
+color:#ffffff;
+}
+#contents1{
+width:700px;
+margin:auto;
+}
+</style>
+</head>
+<body>
+<br><br><br><br><br><br>
+<div id="contents1">
+<input type="button" value="表示" id="button"><br>
+<div id="sample"></div>
+</div>
+</body>
+</html>
+
+
