@@ -2,14 +2,14 @@
     \"http://www.w3.org/TR/html4/loose.dtd\">
 <html>
 <head>
-<title>q10116490425 javascript‚ÅŠg‘å‰æ‘œ‚ğ•¡”İ’u‚µ‚½‚¢ test</title>
+<title>q10116490425 javascriptã§æ‹¡å¤§ç”»åƒã‚’è¤‡æ•°è¨­ç½®ã—ãŸã„ test</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" type="text/javascript" ></script>
 <base href="http://www.red.oit-net.jp/tatsuya/java/image3.htm">
 <script type="text/javascript">
-// leftPx topPy ƒJ[ƒ\ƒ‹‚ğæ‚¹‚½‚ÌƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚©‚ç‚Ì‹——£‚ğw’è‚·‚éB
-// ƒ}ƒCƒiƒX’l‚à‚n‚j
-// fspeed ƒtƒF[ƒhƒCƒ“AƒtƒF[ƒhƒAƒEƒg‚ÌƒXƒs[ƒh(ƒ~ƒŠ•b) 1000 ‚Í@1•b
-// class_names‚Íƒ†ƒj[ƒN‚ÅD‚«‚È–¼‘O‚ğİ’è‚µ‚Ä‚­‚¾‚³‚¢B
+// leftPx topPy ã‚«ãƒ¼ã‚½ãƒ«ã‚’ä¹—ã›ãŸæ™‚ã®ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‹ã‚‰ã®è·é›¢ã‚’æŒ‡å®šã™ã‚‹ã€‚
+// ãƒã‚¤ãƒŠã‚¹å€¤ã‚‚ï¼¯ï¼«
+// fspeed ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã€ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®ã‚¹ãƒ”ãƒ¼ãƒ‰(ãƒŸãƒªç§’) 1000 ã¯ã€€1ç§’
+// class_namesã¯ãƒ¦ãƒ‹ãƒ¼ã‚¯ã§å¥½ããªåå‰ã‚’è¨­å®šã—ã¦ãã ã•ã„ã€‚
 $.fn.extend({
 Image_popup:function(class_names,leftPx,topPy,fspeed){
   $(this).hover(function(e){
@@ -20,7 +20,7 @@ Image_popup:function(class_names,leftPx,topPy,fspeed){
    var tPos       = (e.pageY + topPy);
    $(class_name).css("top",  tPos + "px");
    $(class_name).css("left", lPos + "px");
-   $(class_name).css("border", "15px solid #cccccc"); // ˜g
+   $(class_name).css("border", "15px solid #cccccc"); // æ 
    $(class_name).fadeIn(fspeed);
   },function(e){
    var class_name = "."+class_names;
