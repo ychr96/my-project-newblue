@@ -1,7 +1,7 @@
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
     <html xmlns="http://www.w3.org/1999/xhtml">  
     <head>  
-      <title>Professional Accordion Slide テスト</title>  
+      <title>Professional Accordion Slide リンク先 テスト</title>  
 <base href="http://kiyoto777.web.fc2.com/test/">
       <style type="text/css">  
         #slide{z-index: 100;}
@@ -161,7 +161,9 @@ function slide_click(){
 function slide_init(){
  var location_search = location.search;//　クエリー部分を求める
  var location_s      = location_search.replace("\?", "");// ？は消す
- document.getElementById(location_s).click(); // クエリー部分のＩＤをクリック
+ if(location_s!=""){
+  document.getElementById(location_s).click(); // クエリー部分のＩＤをクリック
+ }
 }
 $(document).ready(function(){
  slide_init();
