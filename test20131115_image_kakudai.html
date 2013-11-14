@@ -31,8 +31,8 @@ Image_popup:function(class_names,leftPx,topPy,fspeed){
 });
 
 $(document).ready(function(){
- $(".popupImages1").Image_popup("imageboxs1",10,10,700);
- $(".popupImages2").Image_popup("imageboxs2",50,50,700);
+ $(".popupImages1").Image_popup("imageboxs1",-130,50,700);
+ $(".popupImages2").Image_popup("imageboxs2",-130,-310,700);
 });
 </script>
 <style>
@@ -40,11 +40,17 @@ body{
 background-color:#000000;
 color:#ffffff;
 }
+#contents1{
+width:700px;
+margin:auto;
+}
 </style>
 </head>
 <body>
 <br><br><br><br><br><br>
-
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<div id="contents1">
 <TABLE>
 <TR>
 <TD><A href="javascript:void(0)" rel='IMG_0141.gif' class="popupImages1")"><IMG src="IMG_0141s.gif" width="100" height="75"></A></TD>
@@ -53,6 +59,7 @@ color:#ffffff;
 <TD><A href="javascript:void(0)" rel='IMG_0679.gif' class="popupImages2")"><IMG src="IMG_0679s.gif" width="100" height="75"></A></TD>
 </TR>
 </TABLE>
+</div>
 </body>
 </html>
 
