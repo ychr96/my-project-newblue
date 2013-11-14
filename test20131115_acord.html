@@ -1,7 +1,7 @@
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
     <html xmlns="http://www.w3.org/1999/xhtml">  
     <head>  
-      <title>Professional Accordion Slide ƒŠƒ“ƒNŒ³ ƒeƒXƒg</title>  
+      <title>Professional Accordion Slide ãƒªãƒ³ã‚¯å…ˆ ãƒ†ã‚¹ãƒˆ</title>  
 <base href="http://kiyoto777.web.fc2.com/test/">
       <style type="text/css">  
         #slide{z-index: 100;}
@@ -140,28 +140,30 @@ way to fit your requirements.
         });
 
 
-//@š@‚±‚±‚©‚ç’Ç‰Á
-//@ƒNƒŠƒbƒN‚µ‚½ƒŠƒ“ƒN‚©‚çƒNƒŠƒbƒN‚µ‚½e‚Ì‚h‚c‚ğ‹‚ßAƒNƒGƒŠ[‚ÌƒŠƒ“ƒN‚ğì¬‚·‚é
+//ã€€â˜…ã€€ã“ã“ã‹ã‚‰è¿½åŠ 
+//ã€€ã‚¯ãƒªãƒƒã‚¯ã—ãŸãƒªãƒ³ã‚¯ã‹ã‚‰ã‚¯ãƒªãƒƒã‚¯ã—ãŸè¦ªã®ï¼©ï¼¤ã‚’æ±‚ã‚ã€ã‚¯ã‚¨ãƒªãƒ¼ã®ãƒªãƒ³ã‚¯ã‚’ä½œæˆã™ã‚‹
 function slide_click(){
  $("#slide  li a").click(function(){
   var link_href          = $(this).attr("href");
   var link_target        = $(this).attr("target");
-  var link_parent_id     = $(this).parent().parent().parent().prev().attr("id");// item1`5
-  var new_location       = link_href+"?"+link_parent_id;// ƒNƒGƒŠ[
-  if(link_target=="_blank"){// ƒ^[ƒQƒbƒg
+  var link_parent_id     = $(this).parent().parent().parent().prev().attr("id");// item1ï½5
+  var new_location       = link_href+"?"+link_parent_id;// ã‚¯ã‚¨ãƒªãƒ¼
+  if(link_target=="_blank"){// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆ
    var targets           = window.open();
-   targets.location.href = new_location;// V‚µ‚¢ƒEƒCƒ“ƒhƒE‚ÅŠJ‚­
+   targets.location.href = new_location;// æ–°ã—ã„ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã§é–‹ã
   }else{
-   location.href         = new_location;// Œ»İ‚ÌƒEƒCƒ“ƒhƒE‚ÅŠJ‚­
+   location.href         = new_location;// ç¾åœ¨ã®ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã§é–‹ã
   }
   return false;
  });
 }
-//@‰Šúˆ—
+//ã€€åˆæœŸå‡¦ç†
 function slide_init(){
- var location_search = location.search;//@ƒNƒGƒŠ[•”•ª‚ğ‹‚ß‚é
- var location_s      = location_search.replace("\?", "");// H‚ÍÁ‚·
- document.getElementById(location_s).click(); // ƒNƒGƒŠ[•”•ª‚Ì‚h‚c‚ğƒNƒŠƒbƒN
+ var location_search = location.search;//ã€€ã‚¯ã‚¨ãƒªãƒ¼éƒ¨åˆ†ã‚’æ±‚ã‚ã‚‹
+ var location_s      = location_search.replace("\?", "");// ï¼Ÿã¯æ¶ˆã™
+ if(location_s!=""){
+  document.getElementById(location_s).click(); // ã‚¯ã‚¨ãƒªãƒ¼éƒ¨åˆ†ã®ï¼©ï¼¤ã‚’ã‚¯ãƒªãƒƒã‚¯
+ }
 }
 $(document).ready(function(){
  slide_init();
@@ -233,5 +235,6 @@ $(document).ready(function(){
     </div>  
 </body>  
 </html>  
+
 
 
