@@ -2,13 +2,13 @@
     \"http://www.w3.org/TR/html4/loose.dtd\">
 <html>
 <head>
-<title>q12116537587 ƒI[ƒvƒjƒ“ƒO test1</title>
+<title>q12116537587 ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚° test1</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" type="text/javascript" ></script>
 <script type="text/javascript">
-function opening(){ // ƒI[ƒvƒjƒ“ƒOŠÖ”
+function opening(){ // ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°é–¢æ•°
  Type_w(".open1",500,100)
 }
-function Type_w(selctor_name,speeds_time,loop_cnt){// ƒ^ƒCƒvƒ‰ƒCƒ^[
+function Type_w(selctor_name,speeds_time,loop_cnt){// ã‚¿ã‚¤ãƒ—ãƒ©ã‚¤ã‚¿ãƒ¼
  $(selctor_name).each(function() {
  var $ele=$(this), str=$ele.text()+" ";
  $ele.css("display","inline");
@@ -26,22 +26,22 @@ function Type_w(selctor_name,speeds_time,loop_cnt){// ƒ^ƒCƒvƒ‰ƒCƒ^[
   }, speeds_time);
 });
 }
-function where_link(){// ‚Ç‚±‚©‚ç‚â‚Á‚Ä—ˆ‚½‚©H
+function where_link(){// ã©ã“ã‹ã‚‰ã‚„ã£ã¦æ¥ãŸã‹ï¼Ÿ
  if(document.referrer.length != 0){
-  return 0;// ƒŠƒ“ƒN‚©‚ç‚â‚Á‚Ä‚«‚½
+  return 0;// ãƒªãƒ³ã‚¯ã‹ã‚‰ã‚„ã£ã¦ããŸ
  }else{
   if(history.length != 1){
-   return 1;// ƒuƒ‰ƒEƒU‚ÌƒuƒbƒNƒ}[ƒN‚©‚ç‚â‚Á‚Ä‚«‚½
+   return 1;// ãƒ–ãƒ©ã‚¦ã‚¶ã®ãƒ–ãƒƒã‚¯ãƒãƒ¼ã‚¯ã‹ã‚‰ã‚„ã£ã¦ããŸ
   }else{
-   return 2;// ‚Ç‚±‚©‚ç‚â‚Á‚Ä‚«‚½‚©•s–¾
+   return 2;// ã©ã“ã‹ã‚‰ã‚„ã£ã¦ããŸã‹ä¸æ˜
   }
  }
 }
-function link_agency(){// ‚Ç‚±‚ÌƒŠƒ“ƒNæ‚©‚ç‚â‚Á‚Ä—ˆ‚½‚©‚ğ’²‚×‚é
+function link_agency(){// ã©ã“ã®ãƒªãƒ³ã‚¯å…ˆã‹ã‚‰ã‚„ã£ã¦æ¥ãŸã‹ã‚’èª¿ã¹ã‚‹
  if(where_link()==0){
-  return document.referrer;// ƒŠƒ“ƒNŒ³‚Ì‚t‚q‚k
+  return document.referrer;// ãƒªãƒ³ã‚¯å…ƒã®ï¼µï¼²ï¼¬
  }else{
-  return "Unknown";// Unknown(•s–¾)
+  return "Unknown";// Unknown(ä¸æ˜)
  }
 }
 $(document).ready(function() {
@@ -68,9 +68,10 @@ font-size:32px;
 <body>
 <div id="contents1">
 <br><br><br><br><br><br>
-<span class="open1">ƒI[ƒvƒjƒ“ƒOƒeƒXƒg</span>
+<span class="open1">ã‚ªãƒ¼ãƒ—ãƒ‹ãƒ³ã‚°ãƒ†ã‚¹ãƒˆ</span>
 </div>
 </body>
 </html>
+
 
 
