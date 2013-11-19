@@ -1,0 +1,56 @@
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+    <html xmlns="http://www.w3.org/1999/xhtml">  
+    <head>  
+      <title>q12116730462 テスト</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+ var ix = Math.floor(Math.random()*$(".banner img").length);
+ $(".banner img:eq("+ix+")").attr("class","active");
+ setInterval("banner_disp()",1000);
+});
+function banner_disp(){
+  $(".banner").css("display","block");
+}
+
+</script>
+<style>
+body{
+background-color:#000000;
+color:#ffffff;
+}
+.banner{
+position:relatve;
+width:100px;
+height:100px;
+display:none;
+}
+.banner img{
+position:absolute;
+top:0px;
+left:0px;
+z-index:0;
+}
+.banner img.active{
+z-index:20;
+}
+</style>
+</head>  
+<body>
+<div id="contents1">
+
+<div class="banner">
+<p class="btn_a">
+<a href="URL"><img src="http://kiyoto777.web.fc2.com/test/gaz0.gif"></a></p>
+<p class="btn_b">
+<a href="URL"><img src="http://kiyoto777.web.fc2.com/test/gaz1.gif"></a></p>
+<p class="btn_c">
+<a href="URL"><img src="http://kiyoto777.web.fc2.com/test/gaz2.gif"></a></p>
+<p class="btn_d">
+<a href="URL"><img src="http://kiyoto777.web.fc2.com/test/gaz3.gif"></a> </p>
+</div>
+
+</div>
+</body>  
+</html>  
+
