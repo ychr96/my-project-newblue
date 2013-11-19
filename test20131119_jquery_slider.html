@@ -1,0 +1,35 @@
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+    <html xmlns="http://www.w3.org/1999/xhtml">  
+    <head>  
+      <title>12116718402 テスト</title>
+<link href="http://kiyoto777.web.fc2.com/jquery-slider.min/jquery.slider.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript" src="http://kiyoto777.web.fc2.com/jquery-slider.min/jquery.slider.min.js"></script>
+<script type="text/javascript">
+$(function() {
+ $('#slideshow').slider({
+ showControls: true, // <<　>>を表示するか
+ autoplay: true, //自動再生
+ showPosition: true, //何枚目を見ているかを表示
+ hoverPause: true, //マウスオーバーでストップ
+ wait: 1500, //停止時間
+ fade: 500, //フェード時間
+ direction: "left" //移動方向
+ });
+});
+</script>
+<style>
+body{
+background-color:#000000;
+color:#ffffff;
+}
+</style>
+</head>  
+<body>  
+<div id="slideshow">
+<div>コンテンツ①</div>
+<div>コンテンツ②</div>
+<div>コンテンツ③</div>
+</div></body>  
+</html>  
+
