@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>YouTube test</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load("swfobject", "2.1");</script>
+<script type="text/javascript">
+//  ●　準備開始
+//  ★　動画のビデオＩＤ指定など各種設定　開始
+var VideoID      = ["XHdcW2axwMk","MBuJ5R2KBKo","WIdWXhV33vs"];
+var VideoVolumes = [20,50,100];                     // 音量の指定
+var VideoPos     = [0,0,0];                         // 再生位置指定
+var Videoseekbar = 0;                               // 1・・・ apiplayer(音量・再生/停止・経過バー非表示)
+var index001     = 0;                               // 開始ビデオ指定(順次再生の場合)
+var autoplaysw   = 1;                               // 自動再生スイッチ 1・・・自動再生
+var random_sw    = "ON";                            // 再生タイプ "ON" ・・・ランダム再生 "OFF" ・・・ 順次再生
+//  ★　動画のビデオＩＤ指定など各種設定　終了
+var params       = { allowScriptAccess: "always" };
+var atts         = { id: "myytplayer" };
+if(random_sw=="ON"){index001=Math.floor(Math.random()*VideoID.length);}
+var embedSWF_URL;
+if(Videoseekbar!=1){                                                  // シークバー(経過バー)表示判定
+ embedSWF_URL    = "http://www.youtube.com/v/"+VideoID[index001]+"?"; // 通常
+}else{
+ embedSWF_URL    = "http://www.youtube.com/apiplayer?";               // 音量・再生/停止・経過バー非表示
+}
+swfobject.embedSWF(embedSWF_URL + "enablejsapi=1&version=3&playerapiid=ytplayer",
+"ytapiplayer", "400", "225", "8", null, null, params, atts); // 横 400px 縦 225px
+//  ●　準備はここまで
+
+//  ● 実行 ブログ表示から2秒のインターバル
+$(document).ready(function(){
+setTimeout('play(autoplaysw)',2000);     // 順次・ランダム再生
+video_thumbnail_set(100);                // サムネイルセット 100は画像の幅
+//Video_selectbox('#videoSelection');    // セレクトボックス制御
+});
+
+//  ●　以下は各種関数
+
+// YouTubePlayer 監視
+function onYouTubePlayerReady(playerId) {
+ ytplayer        = document.getElementById("myytplayer");
+ setInterval(updatePlayerInfo, 250);                         // プレイ時間監視間隔 0.25秒
+}
+// YouTubePlayer 状況把握
+function updatePlayerInfo() {
+ if(ytplayer.getPlayerState() == 0){
+  if(ytplayer) {
+   play(autoplaysw);                                         // 動画を再生します
+  }
+ }
+}
+// YouTubePlayer 再生
+function play(autoplaysws) {
+ if (ytplayer) {
+  ytplayer.cueVideoById(VideoID[index001], VideoPos[index001]);
+  play_thumb_set(index001);                                   // プレイ中サムネイルセット
+  if(autoplaysws==1){
+   ytplayer.playVideo();                                      // 動画を再生します
+  }
+  ytplayer.setVolume(VideoVolumes[index001]);                 // 音量をセットします 
+  if(random_sw == "ON"){
+   index001=Math.floor(Math.random()*VideoID.length);         // ランダム選曲
+  }else{
+   index001++;                                                // 順次再生
+   if(VideoID.length == index001){index001 = 0;}              // 最後まできたら最初に戻る
+  }
+ }
+}
+// YouTube playVideo 再生
+function playVideo() {
+  if (ytplayer) {
+    ytplayer.playVideo();
+  }
+}
+// YouTube Pause 停止
+function pauseVideo() {
+  if (ytplayer) {
+    ytplayer.pauseVideo();
+  }
+}
+// YouTube Mute 消音
+function muteVideo() {
+  if(ytplayer) {
+    ytplayer.mute();
+  }
+}
+// YouTube unMute 音声解除
+function unMuteVideo() {
+  if(ytplayer) {
+    ytplayer.unMute();
+  }
+}
+// YouTube Volume set 音量
+function setVideoVolume() {
+  var volume = parseInt(document.getElementById("volumeSetting").value);
+  if(isNaN(volume) || volume < 0 || volume > 100) {
+    alert("Please enter a valid volume between 0 and 100.");
+  }
+  else if(ytplayer){
+    ytplayer.setVolume(volume);
+  }
+}
+// セレクトボックス制御
+function Video_selectbox(selectors){
+ $("select"+selectors).change(function(){
+  var SID_Vol_Pos="";                                      // ビデオＩＤ ボリューム 開始位置(startSeconds)
+  $("select"+selectors+" option:selected").each(function(){
+   SID_Vol_Pos = $(this).val().split(",");                 // csv分割
+  });
+  if(SID_Vol_Pos[0]!= "none"){
+   if(ytplayer) {
+    ytplayer.setVolume(SID_Vol_Pos[1]);                    // 音量をセットします 
+    ytplayer.loadVideoById(SID_Vol_Pos[0],SID_Vol_Pos[2]); // 動画を再生します
+   }
+  }
+ }).change();
+}
+// サムネイルクリック
+function video_thumbnail_click(seq){
+ if(ytplayer) {
+  ytplayer.setVolume(VideoVolumes[seq]);                   // 音量をセットします 
+  ytplayer.loadVideoById(VideoID[seq],VideoPos[seq]);      // 動画を再生します
+  play_thumb_set(seq);                                     // プレイ中サムネイルセット
+ }
+}
+// サムネイルセット
+function video_thumbnail_set(thumb_width){
+ var video_thumb_url;
+ var video_thumb_Area="";
+ for(i=0; i<VideoID.length; i++){
+   video_thumb_url   = "http://img.youtube.com/vi/"+VideoID[i]+"/0.jpg"; // Bigサムネイル
+   video_thumb_Area += '<img src="'+video_thumb_url+'" width="'+thumb_width+'" onclick="video_thumbnail_click('+i+')">';
+ }
+ $("#video_thumbnail").html(video_thumb_Area);
+}
+// プレイ中サムネイルセット
+function play_thumb_set(play_ix){
+ for(i=0; i<VideoID.length; i++){
+  if(play_ix==i){
+   $("#video_thumbnail img:eq("+i+")").css("border-bottom","3px solid #ff0000");
+  }else{
+   $("#video_thumbnail img:eq("+i+")").css("border-bottom","none");
+  }
+ }
+}
+</script>
+
+</script>
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+color:#ffffff;
+}
+#container{
+width:500px;
+margin:auto;
+}
+#videosel{
+margin-left:10px;
+}
+#video_thumbnail img{
+margin-right:10px;
+}
+#video_thumbnail img:hover{
+cursor:pointer;
+}
+</style>
+</HEAD>
+<body>
+<div id="container">
+<br><br><br><br>
+<div id="ytapiplayer"></div>
+<br><br>
+<div id="video_thumbnail"></div><br>
+
+<!--Video SelectBox-->
+<!--
+<div id="videosel">
+選曲　<select id="videoSelection">
+<option value="none" style="background-color:#00ff00;color:#000000;">曲の選択</option>
+<option value="XHdcW2axwMk,20,0"  style="background-color:#ffffff;color:#000000;">【MV】ギンガムチェック / AKB48[公式]</option>
+<option value="MBuJ5R2KBKo,30,0"  style="background-color:#ffffff;color:#000000;">【MV】真夏のSounds good ! (Dance ver.) / AKB48[公式] </option>
+<option value="WIdWXhV33vs,100,0" style="background-color:#ffffff;color:#000000;">【MV】UZA -Dance ver.- / AKB48[公式]</option>
+</select>
+</div><br>
+-->
+
+<!--Video Controls-->
+<!--
+<a onclick="play();"   href="javascript:void(0);">Play</a>
+<a onclick="pause();"  href="javascript:void(0);">Pause</a>
+<a onclick="stop();"   href="javascript:void(0);">Stop</a>
+<a onclick="mute();"   href="javascript:void(0);">Mute</a>
+<a onclick="unMute();" href="javascript:void(0);">Unmute</a>
+<input id="volumeSetting" type="text" size="3" />　<a href="javascript:void(0)" onclick="setVideoVolume();">
+-->
+
+</div>
+</body>
+</HTML>
+
