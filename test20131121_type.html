@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"
+    \"http://www.w3.org/TR/html4/loose.dtd\">
+<html>
+<head>
+<title>q13116788293 タイプライター風文字 test1</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js" type="text/javascript" ></script>
+<script type="text/javascript">
+function Type_w(selctor_name,speeds_time,loop_cnt){// タイプライター
+ $(selctor_name).each(function() {
+ var $ele=$(this), str=$ele.text()+" ";
+ $ele.css("display","inline");
+ $ele.text('');
+ var w_counters=0,loop_cntw=2;
+ var timer = setInterval(function() {
+  $ele.text(str.substring(0, w_counters++));
+   if (w_counters > str.length){
+    if (loop_cnt >= loop_cntw){
+      $ele.text('');loop_cntw++;w_counters=0;
+    }else{
+     clearInterval(timer);
+    }
+   }
+  }, speeds_time);
+ });
+}
+$(document).ready(function() {
+ Type_w(".type1",500,100)
+});
+</script>
+<style>
+body{
+background-color:#000000;
+color:#ffffff;
+}
+#contents1{
+width:500px;
+margin:auto;
+}
+.type1{
+color:#ff0000;
+font-size:32px;
+}
+</style>
+</head>
+<body>
+<div id="contents1">
+<br><br><br><br><br><br>
+<span class="type1">タイプライターテスト</span>
+</div>
+</body>
+</html>
+
+
