@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q10116907350 test</TITLE>
+<script type="text/javascript">
+function onURL(thislink,rss_url){
+ var href_url        = thislink.href+"?rss="+encodeURIComponent(rss_url);
+ if(thislink.target=="_blank"){
+  wopen               = window.open();
+  wopen.location.href = href_url;
+ }else{
+  location.href = href_url;
+ }
+}
+
+</script>
+
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+color:#ffffff;
+}
+#container{
+width:700px;
+margin:auto;
+}
+</style>
+</HEAD>
+<body>
+<div id="container">
+<br><br><br><br>
+<a href="test20131123_rsstest1.html" onclick="onURL(this,'http://rssblog.ameba.jp/new-blue-777/rss.html'); return false;" target="_blank" >テスト1</a><br>
+<a href="test20131123_rsstest1.html" onclick="onURL(this,'http://rssblog.ameba.jp/new-blue-777/rss.html'); return false;" >テスト2</a>
+</div>
+</body>
+</HTML>
+
