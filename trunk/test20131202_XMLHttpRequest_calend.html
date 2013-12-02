@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+    <html xmlns="http://www.w3.org/1999/xhtml">  
+    <head>  
+      <title>10117352015 テスト</title>  
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+// XMLHttpRequestオブジェクト生成
+function createXMLHttpRequest_func(){
+    var XMLhttpObject = null;
+    try{
+        XMLhttpObject = new XMLHttpRequest();//Firefox, Opera, Safari
+    }catch(e){
+        try{                                 //IE6～(MSXML2以降用)
+            XMLhttpObject = new ActiveXObject("Msxml2.XMLHTTP");
+        }catch(e){
+            try{                            //IEその他(旧MSXML用)
+                XMLhttpObject = new ActiveXObject("Microsoft.XMLHTTP");
+            }catch(e){
+                return null;
+            }
+        }
+    }
+    if(XMLhttpObject){                      // Win ie以外のXMLHttpRequestオブジェクト実装ブラウザ用
+        return new XMLHttpRequest();
+    }
+}
+// ファイルにアクセスし受信して内容を表示
+function getFile_func( idName ,fName ) {
+    var httpObj = createXMLHttpRequest_func(); // XMLHttpRequestオブジェクト生成
+    httpObj.open('GET', fName, true);          // open メソッド
+    httpObj.onreadystatechange = function() { 
+        if (httpObj.readyState==4) {           // readyState値は4で受信完了
+            dataset_func(httpObj, idName);     // コールバック
+        }
+    }
+    httpObj.send('');                          // send メソッド(null('')を送信)
+}
+// コールバック関数 ( 受信した内容を該当するＩＤへセットする )
+function dataset_func( Obj, idNames ) {
+    var colors;
+    if(Obj.responseText.indexOf("NG")==-1){
+     colors="blue";
+    }else{
+     colors="red";
+    }
+     document.getElementById(idNames).innerHTML = Obj.responseText;
+}
+
+$(document).ready(function(){
+ $("a.jouho_disp").click(function(){
+  getFile_func('jouhou',$(this).attr("href"));
+  return false;
+ });
+});
+</script>      
+</head>  
+<body>
+<div id="karenda">カレンダー<br>
+<a href="https://dl.dropboxusercontent.com/u/192658020/message_Area/hyoji1.txt" class="jouho_disp">1</a> 
+<a href="https://dl.dropboxusercontent.com/u/192658020/message_Area/hyoji2.txt" class="jouho_disp">2</a>
+</div>
+
+情報<br>
+<div id="jouhou"></body>  
+</html>  
+
+
