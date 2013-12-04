@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HEAD>
+<TITLE>q11117400106 test</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+var json = { "address" : ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県"] };// JSON Data
+var Prefecture_name    = new Array();// セレクトボックス 県名  アレイ
+var Prefecture_address = new Array();// セレクトボックス value アレイ
+function init_shori(){// 初期処理
+ var i = 0;
+ $("select[name='HOGEHOGE'] option").each(function(){
+  Prefecture_name[i]    = $(this).text();// 県名
+  Prefecture_address[i] = $(this).val(); // value
+  i++;
+ });
+}
+function Prefecture_name_search(){// 検索処理
+ for(j=0; j<json.address.length; j++){
+  for(i=0; i<Prefecture_name.length; i++){
+   if(json.address[j]==Prefecture_name[i]){
+    alert(json.address[j]+"="+Prefecture_address[i]);
+    break;
+   }
+  }
+ }
+}
+$(document).ready(function(){
+ init_shori();
+ Prefecture_name_search();
+});
+</script>
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+color:#ffffff;
+}
+#container{
+width:700px;
+margin:auto;
+}
+</style>
+</HEAD>
+<body>
+<div id="container">
+<br><br><br><br>
+<form name="HOGE">
+<SELECT NAME="HOGEHOGE">
+<OPTION VALUE="-1">回答を選択してください</OPTION>
+<OPTION VALUE="01">北海道</OPTION>
+<OPTION VALUE="02">青森県</OPTION>
+<OPTION VALUE="03">岩手県</OPTION>
+<OPTION VALUE="04">宮城県</OPTION>
+<OPTION VALUE="05">秋田県</OPTION>
+<OPTION VALUE="06">山形県</OPTION>
+<OPTION VALUE="07">福島県</OPTION>
+</SELECT>
+</form>
+</div>
+</body>
+</HTML>
+
