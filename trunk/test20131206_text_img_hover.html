@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<HEAD>
+<TITLE>11117551101 test   CSSのa:hoverについての質問です。 CSSにてaにhoverをかけていますが文字リンクだ...</TITLE>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript">
+function img_hover_set(class_names){// 画像のhoverとリンクのhoverのＣＳＳを切り分ける
+ $("a").hover(function(){
+  var img_src=$(this).find("img").attr("src");
+  if(typeof(img_src)!="undefined"){
+   $(this).addClass(class_names);
+  }
+ },
+ function () {
+  $(this).removeClass(class_names);
+ });
+}
+
+$(document).ready(function(){
+ img_hover_set("img_css_set");
+});
+</script>
+<style type="text/css">
+body{ /* 全体 */
+background-color:#000000;
+color:#ffffff;
+}
+#container{
+width:700px;
+margin:auto;
+}
+a {
+color: white;
+display: inline;
+letter-spacing: 2px;
+text-decoration: none;
+border-style: solid;
+border-width: 1px;
+padding: 3px;
+}
+
+a:hover {
+background-color: gray;
+filter:alpha(opacity=40);
+-moz-opacity: 0.4;
+opacity: 0.4;
+}
+.img_css_set:hover{
+background-color: transparent;
+filter:alpha(opacity=100);
+-moz-opacity: 1.0;
+opacity: 1.0;
+}
+
+</style>
+</HEAD>
+<body>
+<div id="container">
+<br><br><br><br>
+<a href="#">テスト</a><br><br><br><br><br><br>
+<a href="#"><img src="http://kiyoto777.web.fc2.com/test/gaz8.gif"></a><br>
+
+</div>
+</body>
+</HTML>
+
