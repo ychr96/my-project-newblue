@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<HEAD>
+<TITLE>q10117539180 test</TITLE>
+<base href="http://kiyoto777.web.fc2.com/test/">
+<script type="text/javascript">
+function JustSizeWindow(img,width,height){
+var opt = "";
+opt+='top=0,left=0';
+opt+=',width='+width+',height='+height+',';
+opt+='directories=0,toolbar=0,menubar=0,scrollbars=0,status=0,resizable=0';
+var jsw=window.open('','jsw',opt);
+jsw.focus();
+jsw.document.open();
+var htm = '<html><head>';
+htm+='<meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
+htm+='<title>写真<\/title>';
+htm+='<\/head>';
+htm+='<bod' + 'y style="margin:0; padding:0;">';
+htm+='<a href="javascript:window.close();">';
+htm+='<img src="'+img+'" width="'+width+'" height="'+height+'" border="0" alt="画像をクリックでウィンド ウを閉じます">';
+htm+='<\/a>';
+htm+='<\/bod'+'y><\/html>';
+jsw.document.write(htm);
+jsw.document.close();
+}
+</script>
+
+<style type="text/css">
+body{ /* 全体 */
+background-color:#ffffff;
+color:#000000;
+}
+#container{
+width:700px;
+margin:auto;
+}
+</style>
+</HEAD>
+<body>
+<div id="container">
+<a href="javascript:JustSizeWindow('gaz7.gif',1024,768)"><img src="gaz7.gif" height="100" border="0" alt="" /></a>
+
+<br><br><br><br>
+</div>
+</body>
+</HTML>
+
